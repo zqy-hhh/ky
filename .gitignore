@@ -1,0 +1,18 @@
+# Dependencies and package-manager caches
+**/node_modules/
+**/.pnpm-store/
+
+# Build output and bundler caches
+**/dist/
+**/.vite/
+**/.turbo/
+
+# Local inspection and temporary files
+.xlsx-inspect/
+**/.DS_Store
+*.log
+
+# Local environment files
+**/.env
+**/.env.*
+!**/.env.example
