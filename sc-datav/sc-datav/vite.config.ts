@@ -6,6 +6,10 @@ import { resolve } from "node:path";
 export default defineConfig({
   plugins: [react()],
   base: "/sc-datav/",
+  server: {
+    port: 5176,
+    host: "127.0.0.1",
+  },
   resolve: {
     alias: {
       "@": resolve("src"),
