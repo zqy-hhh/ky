@@ -162,16 +162,80 @@ const ImageButton = styled.button`
   }
 `;
 
-const PhotoGrid = styled.div`
+const PhotoStage = styled.div`
   height: calc(100% - 48px);
   min-height: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+`;
 
-  ${ImageButton}:only-child {
-    grid-column: 1 / -1;
+const PhotoViewport = styled.div`
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #020814;
+`;
+
+const PhotoTrack = styled.div<{ $index: number }>`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transform: translateX(${({ $index }) => `${-$index * 100}%`});
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+`;
+
+const PhotoSlide = styled.div`
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+`;
+const PhotoControls = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex: none;
+  height: 28px;
+`;
+
+const PhotoArrow = styled.button`
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid rgba(255, 209, 102, 0.6);
+  background: rgba(5, 16, 29, 0.9);
+  color: #ffd166;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    border-color: #fff1a8;
+    color: #fff1a8;
+    outline: none;
   }
+`;
+
+const PhotoDots = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 7px;
+`;
+
+const PhotoDot = styled.button<{ $active: boolean }>`
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: ${({ $active }) => ($active ? "#ffd166" : "rgba(255, 255, 255, 0.36)")};
+  box-shadow: ${({ $active }) => ($active ? "0 0 9px #ffd166" : "none")};
+  cursor: pointer;
 `;
 
 const ModeSwitch = styled.div`
@@ -362,18 +426,86 @@ function ScenicPanels(props: {
       </Card>
       <Card style={{ gridArea: "4 / 4 / 7 / 5" }}>
         <CardTitle>景区实景照片</CardTitle>
-        <PhotoGrid>
-          {spot.images.map((image, index) => (
-            <ImageButton
-              key={image}
-              type="button"
-              onClick={() => onOpenImage(image)}>
-              <img src={image} alt={`${spot.name}实景照片${index + 1}`} />
-              <span>点击放大</span>
-            </ImageButton>
-          ))}
-        </PhotoGrid>
+        <PhotoCarousel spot={spot} onOpenImage={onOpenImage} />
       </Card>
     </>
+  );
+}
+function PhotoCarousel(props: {
+  spot: ScenicSpot;
+  onOpenImage: (image: string) => void;
+}) {
+  const { spot, onOpenImage } = props;
+  const [photoIndex, setPhotoIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const photoCount = spot.images.length;
+
+  useEffect(() => {
+    setPhotoIndex(0);
+    setPaused(false);
+  }, [spot.id]);
+
+  useEffect(() => {
+    if (paused || photoCount < 2) return;
+    const timer = window.setInterval(() => {
+      setPhotoIndex((index) => (index + 1) % photoCount);
+    }, 3600);
+    return () => window.clearInterval(timer);
+  }, [paused, photoCount, spot.id]);
+
+  if (!photoCount) return null;
+
+  const move = (offset: number) => {
+    setPhotoIndex((index) => (index + offset + photoCount) % photoCount);
+  };
+
+  return (
+    <PhotoStage
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}>
+      <PhotoViewport>
+        <PhotoTrack $index={photoIndex}>
+          {spot.images.map((image, index) => (
+            <PhotoSlide key={image} aria-hidden={index !== photoIndex}>
+              <ImageButton
+                type="button"
+                tabIndex={index === photoIndex ? 0 : -1}
+                onClick={() => onOpenImage(image)}>
+                <img src={image} alt={`${spot.name}实景照片${index + 1}`} />
+                <span>点击放大</span>
+              </ImageButton>
+            </PhotoSlide>
+          ))}
+        </PhotoTrack>
+      </PhotoViewport>
+      {photoCount > 1 && (
+        <PhotoControls aria-label={`${spot.name}照片切换`}>
+          <PhotoArrow
+            type="button"
+            aria-label="上一张照片"
+            onClick={() => move(-1)}>
+            ‹
+          </PhotoArrow>
+          <PhotoDots>
+            {spot.images.map((photo, index) => (
+              <PhotoDot
+                key={photo}
+                type="button"
+                aria-label={`查看第 ${index + 1} 张照片`}
+                aria-current={index === photoIndex}
+                $active={index === photoIndex}
+                onClick={() => setPhotoIndex(index)}
+              />
+            ))}
+          </PhotoDots>
+          <PhotoArrow
+            type="button"
+            aria-label="下一张照片"
+            onClick={() => move(1)}>
+            ›
+          </PhotoArrow>
+        </PhotoControls>
+      )}
+    </PhotoStage>
   );
 }

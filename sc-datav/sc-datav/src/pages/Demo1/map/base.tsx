@@ -146,6 +146,7 @@ export default function Base(props: BaseProps) {
           variant="beam"
           showLabels
           beamHeight={4.5}
+          onSelect={(spot) => useConfigStore.getState().selectScenic(spot)}
         />
       )}
     </group>

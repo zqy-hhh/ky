@@ -1828,6 +1828,70 @@ body {
     background: #8fbf6f;
 }
 
+.chat-api-config {
+    padding: 10px 14px;
+    background: #f0ecdd;
+    border-bottom: 1px solid var(--line);
+}
+
+.chat-api-config-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 7px;
+    color: var(--ink-soft);
+    font-size: 12px;
+}
+
+.chat-api-status {
+    color: #9a6b2f;
+}
+
+.chat-api-status.ready {
+    color: var(--green-700);
+}
+
+.chat-api-config-row {
+    display: flex;
+    gap: 6px;
+}
+
+.chat-api-config-row input {
+    min-width: 0;
+    flex: 1;
+    padding: 7px 9px;
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    background: var(--card);
+    color: var(--ink);
+    font-size: 12px;
+    font-family: var(--font-body);
+}
+
+.chat-api-config-row input:focus {
+    outline: none;
+    border-color: var(--green-700);
+}
+
+.chat-api-btn {
+    flex: 0 0 auto;
+    padding: 6px 9px;
+    border: 1px solid var(--green-800);
+    border-radius: 4px;
+    background: var(--green-700);
+    color: #f7f3e9;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.chat-api-btn.secondary {
+    border-color: var(--line-strong);
+    background: var(--card);
+    color: var(--ink-soft);
+}
+
+.chat-api-btn:hover { filter: brightness(1.08); }
+
 .chat-close {
     margin-left: auto;
     background: none;
@@ -2009,6 +2073,17 @@ body {
             <span class="chat-header-dot"></span>在线客服 · 小旅
             <button class="chat-close" id="aiChatClose">×</button>
         </div>
+        <div class="chat-api-config">
+            <div class="chat-api-config-head">
+                <span>DeepSeek API 配置</span>
+                <span class="chat-api-status" id="aiApiStatus">未配置</span>
+            </div>
+            <div class="chat-api-config-row">
+                <input type="password" id="aiApiKeyInput" autocomplete="off" placeholder="请输入您的 API Key">
+                <button type="button" class="chat-api-btn" id="aiSaveApiBtn">保存</button>
+                <button type="button" class="chat-api-btn secondary" id="aiClearApiBtn">清除</button>
+            </div>
+        </div>
         <div class="chat-quick-btns" id="aiQuickBtns">
             <button class="chat-quick-btn" data-q="介绍平台">介绍平台</button>
             <button class="chat-quick-btn" data-q="使用说明">使用说明</button>
@@ -2051,6 +2126,7 @@ body {
                 <a class="nav-item" id="navInterestScore" data-page="interestScorePage"><span class="nav-marker"></span><span>兴趣打分表</span></a>
                 <a class="nav-item" id="navSafetyAnalysis" data-page="safetyAnalysisPage"><span class="nav-marker"></span><span>安全旅游分析</span></a>
                 <a class="nav-item" id="navGroupPage" data-page="groupPage"><span class="nav-marker"></span><span>旅游组群</span></a>
+                <a class="nav-item" id="navDigitalSandbox" href="http://127.0.0.1:5176/sc-datav/"><span class="nav-marker"></span><span>数字沙盘</span></a>
                 <div class="nav-section-title">数据分析</div>
                 <a class="nav-item" id="navDataSelect" data-page="dataSelectPage"><span class="nav-marker"></span><span>数据化选择</span></a>
                 <a class="nav-item" id="navVisual" data-page="visualPage"><span class="nav-marker"></span><span>可视化分析</span></a>
@@ -2145,6 +2221,14 @@ body {
                         <div class="home-card-body">
                             <div class="home-card-title">可视化分析</div>
                             <div class="home-card-desc">雷达图 · 三曲线差值图 · 饼状分布</div>
+                        </div>
+                        <div class="home-card-arrow">›</div>
+                    </div>
+                    <div class="home-card" id="homeCardDigitalSandbox">
+                        <div class="home-card-index">09</div>
+                        <div class="home-card-body">
+                            <div class="home-card-title">数字沙盘</div>
+                            <div class="home-card-desc">河北省 3D 地图 · 景区标注 · 城市数据可视化</div>
                         </div>
                         <div class="home-card-arrow">›</div>
                     </div>
@@ -2978,8 +3062,11 @@ body {
     var lastEngine = 'javascript';
     var navStack = [];
 
-    // API 密钥不写入仓库；需要启用客服接口时，可在当前浏览器本地配置 deepseekApiKey.
-    var deepseekApiKey = window.localStorage.getItem('deepseekApiKey') || '';
+    // API 密钥不写入仓库，仅从当前浏览器本地配置中读取。
+    var deepseekApiKey = '';
+    try {
+        deepseekApiKey = window.localStorage.getItem('deepseekApiKey') || '';
+    } catch (e) { /* 浏览器禁用本地存储时保持未配置状态 */ }
     var deepseekApiUrl = 'https://api.deepseek.com/chat/completions';
     var chatHistory = [];
     var isAiLoading = false;
@@ -4149,7 +4236,50 @@ body {
         return div;
     }
 
+    function updateApiConfigStatus(message) {
+        var status = $('aiApiStatus');
+        if (!status) return;
+        var configured = !!deepseekApiKey;
+        status.textContent = message || (configured ? '已配置' : '未配置');
+        status.classList.toggle('ready', configured);
+    }
+
+    function saveDeepSeekApiKey() {
+        var input = $('aiApiKeyInput');
+        var apiKey = input ? input.value.trim() : '';
+        if (!apiKey) {
+            updateApiConfigStatus('请输入 API Key');
+            if (input) input.focus();
+            return;
+        }
+        try {
+            window.localStorage.setItem('deepseekApiKey', apiKey);
+            deepseekApiKey = apiKey;
+            input.value = '';
+            updateApiConfigStatus('已保存');
+            appendChatMsg('assistant', 'API Key 已保存在当前浏览器中，现在可以使用在线客服。');
+        } catch (e) {
+            updateApiConfigStatus('保存失败');
+            appendChatMsg('assistant', '当前浏览器无法保存 API Key，请检查浏览器隐私或存储设置。');
+        }
+    }
+
+    function clearDeepSeekApiKey() {
+        try {
+            window.localStorage.removeItem('deepseekApiKey');
+        } catch (e) { /* 浏览器禁用本地存储时仍清除当前会话变量 */ }
+        deepseekApiKey = '';
+        chatHistory = [];
+        if ($('aiApiKeyInput')) $('aiApiKeyInput').value = '';
+        updateApiConfigStatus();
+        appendChatMsg('assistant', 'API Key 已清除，在线客服接口已停止使用。');
+    }
+
     function callDeepSeekAPI(userMsg, callback) {
+        if (!deepseekApiKey) {
+            callback('请先在客服面板顶部填写并保存您自己的 DeepSeek API Key，再发送问题。');
+            return;
+        }
         chatHistory.push({ role: 'user', content: userMsg });
         if (chatHistory.length > 14) chatHistory = chatHistory.slice(-14);
         var messages = [{ role: 'system', content: buildSystemPrompt() }].concat(chatHistory);
@@ -4166,7 +4296,11 @@ body {
                 max_tokens: 800
             })
         }).then(function (resp) {
-            if (!resp.ok) throw new Error('API ' + resp.status);
+            if (!resp.ok) {
+                var error = new Error('API ' + resp.status);
+                error.status = resp.status;
+                throw error;
+            }
             return resp.json();
         }).then(function (data) {
             var reply = data.choices && data.choices[0] && data.choices[0].message ?
@@ -4174,8 +4308,10 @@ body {
             chatHistory.push({ role: 'assistant', content: reply });
             lastAiMsg = reply;
             callback(reply);
-        }).catch(function () {
-            var fallback = '抱歉，客服服务暂时连接不上。您可以先查看"安全旅游分析"与"数据化选择"页面获取帮助，或稍后再试。';
+        }).catch(function (error) {
+            var fallback = error && (error.status === 401 || error.status === 403) ?
+                'API Key 无效或没有访问权限，请清除后重新填写。' :
+                '抱歉，客服服务暂时连接不上。请检查网络或稍后再试。';
             lastAiMsg = fallback;
             callback(fallback);
         });
@@ -4244,6 +4380,9 @@ body {
         Object.keys(cardMap).forEach(function (id) {
             var el = $(id);
             if (el) el.addEventListener('click', function () { showPage(cardMap[id]); });
+        });
+        $('homeCardDigitalSandbox').addEventListener('click', function () {
+            window.location.href = 'http://127.0.0.1:5176/sc-datav/';
         });
 
         // 轮播
@@ -4314,6 +4453,11 @@ body {
         });
         $('aiChatClose').addEventListener('click', function () {
             $('aiChatPanel').classList.remove('open');
+        });
+        $('aiSaveApiBtn').addEventListener('click', saveDeepSeekApiKey);
+        $('aiClearApiBtn').addEventListener('click', clearDeepSeekApiKey);
+        $('aiApiKeyInput').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') saveDeepSeekApiKey();
         });
         $('aiSendBtn').addEventListener('click', function () {
             var text = $('aiChatInput').value;
@@ -4404,6 +4548,7 @@ body {
         renderSafetyAnalysis('safety-overview');
         refreshDataSafetyLivePanel();
         bindEvents();
+        updateApiConfigStatus();
         if ('speechSynthesis' in window) {
             window.speechSynthesis.onvoiceschanged = loadVoices;
             loadVoices();

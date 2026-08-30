@@ -1,4 +1,4 @@
-import { useRef, type ComponentProps } from "react";
+import { useEffect, useMemo, useRef, type ComponentProps } from "react";
 import styled from "styled-components";
 import {
   Canvas,
@@ -8,13 +8,16 @@ import {
 } from "@react-three/fiber";
 import { Image, ScrollControls, useScroll } from "@react-three/drei";
 import {
+  CanvasTexture,
   Color,
   DoubleSide,
   Group,
+  LinearFilter,
   MathUtils,
   Mesh,
   PlaneGeometry,
   ShaderMaterial,
+  SRGBColorSpace,
   Texture,
   Vector2,
   Vector3,
@@ -23,9 +26,30 @@ import { useNavigate } from "react-router";
 import Bg from "./bg";
 
 const CAROUSEL_ITEMS = [
-  { url: "/sc-datav/demo_0_hebei.png?v=3", path: "/demo0" },
-  { url: "/sc-datav/demo_1_hebei.png?v=2", path: "/demo1" },
-  { url: "/sc-datav/demo_2_hebei.png?v=3", path: "/demo2" },
+  {
+    id: "city-brain-primary",
+    title: "河北省智慧城市数据大脑",
+    url: "/sc-datav/demo_1_hebei.png?v=2",
+    path: "/demo1",
+  },
+  {
+    id: "smart-tourism-primary",
+    title: "河北智慧文旅全景平台",
+    url: "/sc-datav/demo_2_hebei.png?v=3",
+    path: "/demo2",
+  },
+  {
+    id: "city-brain-secondary",
+    title: "河北省智慧城市数据大脑",
+    url: "/sc-datav/demo_1_hebei.png?v=2",
+    path: "/demo3",
+  },
+  {
+    id: "smart-tourism-secondary",
+    title: "河北智慧文旅全景平台",
+    url: "/sc-datav/demo_2_hebei.png?v=3",
+    path: "/demo4",
+  },
 ];
 
 const Wrapper = styled.div`
@@ -33,6 +57,38 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
 `;
+
+const HomeButton = styled.button`
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 16px;
+  border: 1px solid rgba(39, 119, 152, 0.65);
+  border-radius: 6px;
+  background: rgba(7, 26, 38, 0.84);
+  color: #e8f7ff;
+  font-size: 14px;
+  letter-spacing: 0;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background 160ms ease, border-color 160ms ease;
+
+  &:hover {
+    border-color: #61d9ff;
+    background: rgba(11, 48, 65, 0.94);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #61d9ff;
+    outline-offset: 3px;
+  }
+`;
+
 
 class BentPlaneGeometry extends PlaneGeometry {
   constructor(
@@ -108,6 +164,11 @@ export default function Index() {
         <Bg />
       </Canvas>
 
+      <HomeButton type="button" onClick={() => window.history.back()}>
+        <span aria-hidden="true">←</span>
+        <span>返回首页</span>
+      </HomeButton>
+
       <WheelDrop>
         <svg width="20" height="32.5" viewBox="0 0 40 65">
           <rect
@@ -150,21 +211,96 @@ function Carousel({ radius = 1.4 }) {
   const count = CAROUSEL_ITEMS.length;
 
   return CAROUSEL_ITEMS.map((item, i) => (
-    <Card
-      key={i}
-      url={item.url}
+    <group
+      key={item.id}
       position={[
         Math.sin((i / count) * Math.PI * 2) * radius,
         0,
         Math.cos((i / count) * Math.PI * 2) * radius,
       ]}
-      rotation={[0, Math.PI + (i / count) * Math.PI * 2, 0]}
-      onClick={(e) => {
-        e.stopPropagation();
-        navigator(item.path);
-      }}
-    />
+      rotation={[0, Math.PI + (i / count) * Math.PI * 2, 0]}>
+      <CardTitle title={item.title} />
+      <Card
+        url={item.url}
+        onClick={(e) => {
+          e.stopPropagation();
+          navigator(item.path);
+        }}
+      />
+    </group>
   ));
+}
+
+function CardTitle({ title }: { title: string }) {
+  const texture = useMemo(() => createLabelTexture(title), [title]);
+
+  useEffect(() => () => texture.dispose(), [texture]);
+
+  return (
+    <sprite
+      position={[0, 0.66, 0.04]}
+      scale={[1.08, 0.17, 1]}
+      renderOrder={10}>
+      <spriteMaterial
+        map={texture}
+        transparent
+        toneMapped={false}
+        depthTest={false}
+        depthWrite={false}
+      />
+    </sprite>
+  );
+}
+
+function createLabelTexture(title: string) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1024;
+  canvas.height = 160;
+  const context = canvas.getContext("2d");
+
+  if (!context) return new CanvasTexture(canvas);
+
+  const inset = 4;
+  const radius = 24;
+  const width = canvas.width - inset * 2;
+  const height = canvas.height - inset * 2;
+
+  context.beginPath();
+  context.moveTo(inset + radius, inset);
+  context.lineTo(inset + width - radius, inset);
+  context.quadraticCurveTo(inset + width, inset, inset + width, inset + radius);
+  context.lineTo(inset + width, inset + height - radius);
+  context.quadraticCurveTo(
+    inset + width,
+    inset + height,
+    inset + width - radius,
+    inset + height
+  );
+  context.lineTo(inset + radius, inset + height);
+  context.quadraticCurveTo(inset, inset + height, inset, inset + height - radius);
+  context.lineTo(inset, inset + radius);
+  context.quadraticCurveTo(inset, inset, inset + radius, inset);
+  context.closePath();
+  context.fillStyle = "rgba(4, 21, 33, 0.88)";
+  context.fill();
+  context.lineWidth = 4;
+  context.strokeStyle = "rgba(107, 221, 255, 0.75)";
+  context.stroke();
+
+  context.font = '600 48px "Microsoft YaHei", sans-serif';
+  context.fillStyle = "#eefaff";
+  context.textAlign = "center";
+  context.textBaseline = "middle";
+  context.shadowColor = "rgba(83, 205, 255, 0.9)";
+  context.shadowBlur = 14;
+  context.fillText(title, canvas.width / 2, canvas.height / 2 + 2);
+
+  const texture = new CanvasTexture(canvas);
+  texture.colorSpace = SRGBColorSpace;
+  texture.minFilter = LinearFilter;
+  texture.magFilter = LinearFilter;
+  texture.generateMipmaps = false;
+  return texture;
 }
 
 export interface ImageMaterial extends ShaderMaterial {
