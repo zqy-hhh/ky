@@ -1341,7 +1341,6 @@ body {
     justify-content: center;
     border-radius: 4px;
     flex-shrink: 0;
-    transform: rotate(-2deg);
 }
 
 .step-title {
@@ -3623,7 +3622,7 @@ body {
             var g = 1 - f / 10;
             var fl = fearLevelText(f);
             html += '<strong>' + modeNames[i] + '：</strong>害怕度 ' + f.toFixed(1) + ' / 10' +
-                '（<span class="zone-badge ' + fl.cls + '">' + fl.text + '</span>）' +
+                '（' + fl.text + '）' +
                 '，主观安全度 F = <strong>' + g.toFixed(2) + '</strong><br>';
         });
         panel.innerHTML = html;
@@ -4013,7 +4012,6 @@ body {
                 if (i === 0) ctx.moveTo(p[0], p[1]); else ctx.lineTo(p[0], p[1]);
             }
             ctx.closePath();
-            ctx.fillStyle = color.replace(')', '') + (fillAlpha === undefined ? '' : '');
             if (fillAlpha !== undefined) {
                 ctx.fillStyle = hexToRgba(color, fillAlpha);
                 ctx.fill();
@@ -4083,7 +4081,7 @@ body {
             start = end;
         });
         ctx.fillStyle = '#26231e';
-        ctx.font = 'bold 14px "STZhongsun","SimSun",serif';
+        ctx.font = 'bold 14px "PingFang SC","Microsoft YaHei",sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText('四模式综合得分占比', cx1, cy - r - 26);
 
