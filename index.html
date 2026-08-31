@@ -45,8 +45,8 @@
     --radius: 6px;
     --shadow: 0 1px 3px rgba(38, 35, 30, .08);
     --shadow-lg: 0 4px 14px rgba(38, 35, 30, .12);
-    --font-serif: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
-    --font-body: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+    --font-serif: "Microsoft YaHei UI", "PingFang SC", "HarmonyOS Sans SC", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+    --font-body: "Microsoft YaHei UI", "PingFang SC", "HarmonyOS Sans SC", "Noto Sans SC", "Source Han Sans SC", sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -55,6 +55,10 @@ html { font-size: 16px; }
 
 body {
     font-family: var(--font-body);
+    font-weight: 400;
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
     background: var(--paper);
     background-image:
         linear-gradient(0deg, rgba(38, 35, 30, .015) 1px, transparent 1px),
@@ -100,27 +104,31 @@ body {
     width: 72px; height: 72px;
     margin: 0 auto 12px;
     border: 3px solid #d9b08c;
-    border-radius: 10px;
+    border-radius: 50%;
     color: #e8dcc8;
     font-family: var(--font-serif);
-    font-size: 30px;
-    line-height: 66px;
-    letter-spacing: 2px;
-    text-indent: 2px;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: rgba(166, 58, 43, .28);
     box-shadow: inset 0 0 0 2px rgba(232, 226, 212, .35);
 }
 
 .sidebar-brand {
     font-family: var(--font-serif);
-    font-size: 18px;
-    letter-spacing: 2px;
+    font-size: 16px;
+    line-height: 1.42;
+    letter-spacing: .5px;
+    font-weight: 600;
 }
 
 .sidebar-sub {
     margin-top: 4px;
     font-size: 12px;
-    letter-spacing: 5px;
+    letter-spacing: 1px;
     color: #b8c4a8;
 }
 
@@ -129,7 +137,7 @@ body {
 .nav-section-title {
     padding: 12px 24px 6px;
     font-size: 12px;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     color: #9db392;
     border-left: 2px solid rgba(217, 176, 140, .5);
     margin-left: 18px;
@@ -160,7 +168,7 @@ body {
 .nav-marker {
     width: 6px; height: 6px;
     background: #8fa884;
-    transform: rotate(45deg);
+    border-radius: 50%;
     flex-shrink: 0;
 }
 
@@ -193,6 +201,7 @@ body {
     background: linear-gradient(160deg, var(--green-800) 0%, var(--green-900) 78%);
     border-radius: var(--radius);
     padding: 30px 38px 24px;
+    margin-bottom: 20px;
     color: #f2ecdd;
     position: relative;
     overflow: hidden;
@@ -223,14 +232,14 @@ body {
 .masthead-title {
     font-family: var(--font-serif);
     font-size: 32px;
-    letter-spacing: 3px;
-    font-weight: 700;
+    letter-spacing: .5px;
+    font-weight: 600;
 }
 
 .masthead-sub {
     margin-top: 10px;
     font-size: 15px;
-    letter-spacing: 2px;
+    letter-spacing: .5px;
     color: #cdd9bf;
 }
 
@@ -264,8 +273,9 @@ body {
 .page-title {
     font-family: var(--font-serif);
     font-size: 27px;
-    letter-spacing: 2px;
+    letter-spacing: .5px;
     color: var(--green-900);
+    font-weight: 600;
 }
 
 .page-subtitle {
@@ -387,11 +397,11 @@ body {
 /* ============ 首页轮播 ============ */
 .home-carousel {
     position: relative;
-    z-index: 2;
+    z-index: 5;
     border-radius: var(--radius);
     overflow: hidden;
     margin-bottom: 22px;
-    margin-top: 4px;
+    margin-top: 10px;
     border: 1px solid var(--line);
     box-shadow: var(--shadow);
     background: #e9e4d6;
@@ -404,14 +414,29 @@ body {
 
 .carousel-slide {
     min-width: 100%;
-    height: 380px;
+    height: 420px;
     position: relative;
+    overflow: hidden;
+    background: #e9e4d6;
+}
+
+.carousel-slide-bg {
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-size: cover;
+    filter: blur(18px);
+    transform: scale(1.08);
+    opacity: .42;
+    pointer-events: none;
 }
 
 .carousel-slide img {
+    position: relative;
+    z-index: 1;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
 }
 
@@ -421,6 +446,7 @@ body {
     padding: 26px 28px 18px;
     background: linear-gradient(0deg, rgba(20, 32, 22, .88) 30%, rgba(20, 32, 22, 0) 100%);
     color: #f4eedf;
+    z-index: 2;
 }
 
 .carousel-caption-title {
@@ -933,10 +959,10 @@ body {
 /* 风险矩阵网格 */
 .risk-matrix-grid {
     display: grid;
-    grid-template-columns: 60px repeat(5, 1fr);
+    grid-template-columns: 64px repeat(5, minmax(0, 1fr));
     gap: 4px;
     margin: 14px 0;
-    max-width: 860px;
+    max-width: 100%;
 }
 
 .risk-matrix-grid .matrix-axis {
@@ -959,16 +985,16 @@ body {
 }
 
 .risk-cell {
-    min-height: 52px;
+    min-height: 74px;
     border-radius: 3px;
-    padding: 5px 6px;
+    padding: 8px 8px 7px;
     font-size: 11px;
-    line-height: 1.35;
+    line-height: 1.32;
     color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
+    justify-content: space-between;
+    text-align: left;
 }
 
 .risk-cell.zone-low { background: var(--zone-low); }
@@ -976,11 +1002,11 @@ body {
 .risk-cell.zone-high { background: var(--zone-high); }
 .risk-cell.zone-extreme { background: var(--zone-extreme); }
 
-.risk-cell-empty { opacity: .42; }
-.risk-cell-empty .rc-mode { font-weight: normal; font-size: 11px; }
+.risk-cell-empty { opacity: .82; }
+.risk-cell-empty .rc-mode { font-weight: 500; font-size: 11px; }
 
-.risk-cell .rc-mode { font-weight: bold; font-size: 12px; }
-.risk-cell .rc-value { opacity: .92; }
+.risk-cell .rc-mode { font-weight: 600; font-size: 12px; }
+.risk-cell .rc-value { opacity: .92; align-self: flex-end; }
 
 .risk-zone-legend {
     display: flex;
@@ -989,6 +1015,16 @@ body {
     font-size: 12px;
     color: var(--ink-soft);
     margin-top: 10px;
+}
+
+.matrix-help {
+    margin: 10px 0 14px;
+    padding: 12px 14px;
+    background: #f8f5ec;
+    border-left: 3px solid var(--green-700);
+    color: var(--ink-soft);
+    font-size: 13px;
+    line-height: 1.75;
 }
 
 .legend-swatch {
@@ -1472,17 +1508,15 @@ body {
 
 .safety-eval-level {
     font-size: 13px;
-    padding: 2px 10px;
-    border-radius: 3px;
-    color: #fff;
-    background: var(--zone-low);
-    letter-spacing: 1px;
+    color: var(--ink-soft);
+    background: transparent;
+    letter-spacing: 0;
 }
 
-.safety-eval-level.zone-low { background: var(--zone-low); }
-.safety-eval-level.zone-mid { background: var(--zone-mid); }
-.safety-eval-level.zone-high { background: var(--zone-high); }
-.safety-eval-level.zone-extreme { background: var(--zone-extreme); }
+.safety-eval-level.zone-low { color: var(--zone-low); }
+.safety-eval-level.zone-mid { color: var(--zone-mid); }
+.safety-eval-level.zone-high { color: var(--zone-high); }
+.safety-eval-level.zone-extreme { color: var(--zone-extreme); }
 
 .live-panel {
     margin-top: 16px;
@@ -1554,7 +1588,7 @@ body {
     letter-spacing: 1px;
 }
 
-.formula-box .fb-note { font-size: 12px; color: var(--ink-faint); text-align: center; margin-top: 6px; }
+.formula-box .fb-note { display: none; }
 
 .persona-box {
     display: flex;
@@ -1644,9 +1678,12 @@ body {
 }
 
 .chart-type-btn {
-    padding: 10px 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
     font-size: 15px;
-    letter-spacing: 2px;
+    letter-spacing: 0;
     background: var(--card);
     border: 1px solid var(--line-strong);
     border-radius: 4px;
@@ -1662,7 +1699,25 @@ body {
     background: var(--green-900);
     color: #f2ecdd;
     border-color: var(--green-900);
-    font-weight: bold;
+    font-weight: 600;
+}
+
+.chart-btn-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #ece6d5;
+    color: var(--green-900);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.chart-type-btn.active .chart-btn-icon {
+    background: rgba(255,255,255,.18);
+    color: #f2ecdd;
 }
 
 .chart-card {
@@ -1740,7 +1795,7 @@ body {
     border-left: 3px solid var(--green-700);
     font-size: 13px;
     color: var(--ink-soft);
-    line-height: 1.9;
+    line-height: 1.75;
 }
 
 /* ============ 面包屑 / 详情 ============ */
@@ -2119,8 +2174,8 @@ body {
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <div class="seal">安途</div>
-                <div class="sidebar-brand">安途智算</div>
-                <div class="sidebar-sub">虚拟仿真系统</div>
+                <div class="sidebar-brand">安途智算虚拟仿真系统</div>
+                <div class="sidebar-sub">康养旅游决策平台</div>
             </div>
             <nav class="sidebar-nav">
                 <div class="nav-section-title">平台功能</div>
@@ -2130,7 +2185,7 @@ body {
                 <a class="nav-item" id="navInterestScore" data-page="interestScorePage"><span class="nav-marker"></span><span>兴趣打分表</span></a>
                 <a class="nav-item" id="navSafetyAnalysis" data-page="safetyAnalysisPage"><span class="nav-marker"></span><span>安全旅游分析</span></a>
                 <a class="nav-item" id="navGroupPage" data-page="groupPage"><span class="nav-marker"></span><span>旅游组群</span></a>
-                <a class="nav-item" id="navDigitalSandbox" href="http://127.0.0.1:5178/sc-datav/" target="_blank" rel="noopener"><span class="nav-marker"></span><span>数字沙盘</span></a>
+                <a class="nav-item" id="navDigitalSandbox" href="http://127.0.0.1:5178/sc-datav/"><span class="nav-marker"></span><span>数字沙盘</span></a>
                 <div class="nav-section-title">数据分析</div>
                 <a class="nav-item" id="navDataSelect" data-page="dataSelectPage"><span class="nav-marker"></span><span>数据化选择</span></a>
                 <a class="nav-item" id="navVisual" data-page="visualPage"><span class="nav-marker"></span><span>可视化分析</span></a>
@@ -2282,7 +2337,7 @@ body {
             <div id="safetyAnalysisPage" class="page">
                 <div class="page-header">
                     <h1 class="page-title">安全旅游分析</h1>
-                    <p class="page-subtitle">基于风险矩阵（可能性 L × 后果 C）对四种康养旅游模式进行系统化安全风险量化与防护分析</p>
+                    <p class="page-subtitle">从发生可能性、影响程度和防护措施三个角度，对四种康养旅游模式进行安全评估</p>
                 </div>
                 <div class="safety-tabs" id="safetyTabs">
                     <button class="safety-tab active" data-tab="safety-overview">风险矩阵总览</button>
@@ -2303,7 +2358,7 @@ body {
             <div id="interestScorePage" class="page">
                 <div class="page-header">
                     <h1 class="page-title">兴趣打分参考表</h1>
-                    <p class="page-subtitle">根据实际情况对五种兴趣类型进行10分制自评，并附风险矩阵参数说明，供数据化选择计算使用</p>
+                    <p class="page-subtitle">按个人兴趣和出行顾虑完成自评，系统将据此给出更贴合的康养模式建议</p>
                 </div>
                 <div class="content-card" id="interestScoreContent"></div>
                 <div class="content-card" id="riskParamContent"></div>
@@ -2431,15 +2486,15 @@ body {
             <div id="dataSelectPage" class="page">
                 <div class="page-header">
                     <h1 class="page-title">康养模式数据化选择</h1>
-                    <p class="page-subtitle">用户画像（K均值聚类）+ 主观安全自评 + 客观风险矩阵，三项同等重要，等权合成综合推荐</p>
+                    <p class="page-subtitle">结合兴趣偏好、出行顾虑与风险评估，生成最终推荐</p>
                 </div>
 
                 <!-- 壹：用户画像 -->
                 <div class="step-card">
                     <div class="step-head">
                         <span class="step-num">壹</span>
-                        <span class="step-title">用户画像 —— 兴趣向量输入</span>
-                        <span class="step-note">K均值聚类画像 · 余弦相似度匹配</span>
+                        <span class="step-title">用户画像打分</span>
+                        <span class="step-note">按真实偏好填写即可</span>
                     </div>
                     <div class="input-grid">
                         <div class="param-group"><label>文化兴趣</label><input type="number" id="cultureInput" value="8" min="0" max="10" step="0.1" placeholder="0-10"><span class="score-hint">满分10分</span></div>
@@ -2466,7 +2521,7 @@ body {
                                 <span class="safety-eval-max">10<small>极怕</small></span>
                             </div>
                             <div class="safety-eval-val-row">
-                                <span>害怕度：</span>
+                                <span>害怕度</span>
                                 <input type="number" class="safety-eval-num" id="safetyEvalCultureNum" value="0" min="0" max="10" step="0.5" onchange="window.syncSafetyEvalSlider('safetyEvalCultureSlider', this.value)">
                                 <span class="safety-eval-level" id="safetyEvalCultureLevel">完全不害怕</span>
                             </div>
@@ -2479,7 +2534,7 @@ body {
                                 <span class="safety-eval-max">10<small>极怕</small></span>
                             </div>
                             <div class="safety-eval-val-row">
-                                <span>害怕度：</span>
+                                <span>害怕度</span>
                                 <input type="number" class="safety-eval-num" id="safetyEvalEcoNum" value="0" min="0" max="10" step="0.5" onchange="window.syncSafetyEvalSlider('safetyEvalEcoSlider', this.value)">
                                 <span class="safety-eval-level" id="safetyEvalEcoLevel">完全不害怕</span>
                             </div>
@@ -2492,7 +2547,7 @@ body {
                                 <span class="safety-eval-max">10<small>极怕</small></span>
                             </div>
                             <div class="safety-eval-val-row">
-                                <span>害怕度：</span>
+                                <span>害怕度</span>
                                 <input type="number" class="safety-eval-num" id="safetyEvalLeisureNum" value="0" min="0" max="10" step="0.5" onchange="window.syncSafetyEvalSlider('safetyEvalLeisureSlider', this.value)">
                                 <span class="safety-eval-level" id="safetyEvalLeisureLevel">完全不害怕</span>
                             </div>
@@ -2505,7 +2560,7 @@ body {
                                 <span class="safety-eval-max">10<small>极怕</small></span>
                             </div>
                             <div class="safety-eval-val-row">
-                                <span>害怕度：</span>
+                                <span>害怕度</span>
                                 <input type="number" class="safety-eval-num" id="safetyEvalMedicalNum" value="0" min="0" max="10" step="0.5" onchange="window.syncSafetyEvalSlider('safetyEvalMedicalSlider', this.value)">
                                 <span class="safety-eval-level" id="safetyEvalMedicalLevel">完全不害怕</span>
                             </div>
@@ -2522,7 +2577,7 @@ body {
                     <div class="step-head">
                         <span class="step-num">叁</span>
                         <span class="step-title">客观风险矩阵</span>
-                        <span class="step-note">系统内置 16 类风险 L×C 评估 · 自动计算</span>
+                        <span class="step-note">系统内置16类风险评估</span>
                     </div>
                     <div id="riskMatrixPreview"></div>
                 </div>
@@ -2555,15 +2610,15 @@ body {
             <!-- 可视化分析 -->
             <div id="visualPage" class="page">
                 <div class="page-header">
-                    <h1 class="page-title">可视化呈现图分析</h1>
-                    <p class="page-subtitle">雷达图 · 三曲线差值图 · 饼状分布图，多图表对比呈现推荐结果</p>
+                    <h1 class="page-title">可视化分析</h1>
+                    <p class="page-subtitle">用曲线、雷达图和分布图查看推荐结果</p>
                 </div>
                 <div class="content-card">
                     <div id="chartSelectionArea">
                         <div class="chart-selector">
-                            <button class="chart-type-btn" data-chart="tricurve">三曲线差值图</button>
-                            <button class="chart-type-btn" data-chart="radar">雷达图</button>
-                            <button class="chart-type-btn" data-chart="pie">饼状分布图</button>
+                            <button class="chart-type-btn" data-chart="tricurve"><span class="chart-btn-icon">折</span><span>匹配曲线</span></button>
+                            <button class="chart-type-btn" data-chart="radar"><span class="chart-btn-icon">雷</span><span>雷达对比</span></button>
+                            <button class="chart-type-btn" data-chart="pie"><span class="chart-btn-icon">饼</span><span>分布占比</span></button>
                         </div>
                     </div>
                     <div id="chartDisplayArea" style="display:none;"></div>
@@ -3158,6 +3213,7 @@ body {
         carouselImages.forEach(function (img, i) {
             trackHtml +=
                 '<div class="carousel-slide">' +
+                '<div class="carousel-slide-bg" style="background-image:url(&quot;' + img.src + '&quot;)"></div>' +
                 '<img src="' + img.src + '" alt="' + img.title + '" loading="' + (i < 2 ? 'eager' : 'lazy') + '" decoding="async">' +
                 '<div class="carousel-caption">' +
                 '<div class="carousel-caption-title">' + img.title + '</div>' +
@@ -3269,7 +3325,7 @@ body {
             '<tr><td>极高风险</td><td>16 - 25</td><td><span class="zone-badge zone-extreme">红色</span></td><td>立即整改，必要时取消行程</td></tr>' +
             '</table>' +
             '<p class="research-intro">本平台将风险矩阵应用于四种康养旅游模式的安全分析：为每类风险评定 L 值与 C 值，计算风险值并划分等级，进而得到各模式的客观安全度（R̄ 为该模式平均风险值）。该客观安全度与用户主观安全自评、兴趣匹配度一起，构成数据化选择的三大核心要素。</p>' +
-            '<p class="research-intro">四种模式的风险矩阵量化结果如下：文化+模式平均风险值 R̄=9.5（中），生态+模式 R̄=14.0（高），休闲+模式 R̄=9.5（中），医疗+模式 R̄=11.0（高）。客观安全度 G 分别为 0.62、0.44、0.62、0.56，为后续综合推荐计算提供数据支撑。详见"安全旅游分析"页面。</p>';
+            '<p class="research-intro">四种模式的风险矩阵量化结果如下：文化+模式平均风险值 R̄=9.5（中），生态+模式 R̄=14.0（高），休闲+模式 R̄=9.5（中），医疗+模式 R̄=11.0（高）。对应的客观安全度 G 分别为 0.62、0.44、0.62、0.56。</p>';
         $('riskMatrixIntroContent').innerHTML = html;
     }
 
@@ -3391,21 +3447,21 @@ body {
     function renderRiskParamContent() {
         var html =
             '<div class="research-section-title">三、风险矩阵参数说明（供数据化选择计算使用）</div>' +
-            '<p class="research-intro">数据化选择的客观安全度 G 由风险矩阵计算而来，其核心参数为可能性 L 与后果严重度 C。为便于用户理解与复核，现将全部参数定义与等级划分标准说明如下：</p>' +
+            '<p class="research-intro">数据化选择里的客观安全度 G 来自风险矩阵。先看可能性 L，再看后果 C，最后按 R=L×C 定级。</p>' +
             '<div class="param-card">' +
-            '<div class="param-card-title">参数一：可能性 L（Likelihood，风险发生的概率）</div>' +
+            '<div class="param-card-title">参数一：可能性 L</div>' +
             '<table><tr><th>L 值</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>' +
             '<tr><td><strong>概率描述</strong></td><td>几乎不可能</td><td>不太可能</td><td>可能发生</td><td>很可能发生</td><td>几乎必然发生</td></tr>' +
             '<tr><td><strong>定性说明</strong></td><td>罕见案例</td><td>偶有报道</td><td>常见问题</td><td>频繁发生</td><td>每次行程都可能遇到</td></tr></table>' +
             '</div>' +
             '<div class="param-card">' +
-            '<div class="param-card-title">参数二：后果严重度 C（Consequence，风险发生后的影响程度）</div>' +
+            '<div class="param-card-title">参数二：后果严重度 C</div>' +
             '<table><tr><th>C 值</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>' +
             '<tr><td><strong>后果描述</strong></td><td>几乎无影响</td><td>轻微影响</td><td>一般影响</td><td>严重影响</td><td>灾难性影响</td></tr>' +
             '<tr><td><strong>定性说明</strong></td><td>无需处理</td><td>简单处理即可</td><td>需就医或中止行程</td><td>需住院治疗</td><td>危及生命</td></tr></table>' +
             '</div>' +
             '<div class="param-card">' +
-            '<div class="param-card-title">参数三：风险值 R 的等级划分（区间1-25）</div>' +
+            '<div class="param-card-title">参数三：风险等级划分</div>' +
             '<table><tr><th>等级</th><th>低风险</th><th>中风险</th><th>高风险</th><th>极高风险</th></tr>' +
             '<tr><td><strong>R 区间</strong></td><td>1 - 4</td><td>5 - 9</td><td>10 - 15</td><td>16 - 25</td></tr>' +
             '<tr><td><strong>颜色标识</strong></td><td><span class="zone-badge zone-low">绿色</span></td><td><span class="zone-badge zone-mid">黄色</span></td><td><span class="zone-badge zone-high">橙色</span></td><td><span class="zone-badge zone-extreme">红色</span></td></tr>' +
@@ -3413,9 +3469,9 @@ body {
             '</div>' +
             '<div class="param-card">' +
             '<div class="param-card-title">参数四：客观安全度 G 的评定说明</div>' +
-            '<p style="text-align:center;font-size:14px;color:#4d483f">由该模式全部风险类别的平均风险值综合评定，G 越接近 1 表示该模式客观上越安全。</p>' +
+            '<p style="text-align:center;font-size:14px;color:#4d483f">按该模式全部风险的平均值换算，数值越接近 1，代表整体越稳妥。</p>' +
             '</div>' +
-            '<p class="research-intro">以上参数在"安全旅游分析"页面逐类逐项给出具体取值（L、C、R、等级、风险表现与防护措施），在"数据化选择"页面自动代入综合推荐模型计算。</p>';
+            '<p class="research-intro">这些取值会在“安全旅游分析”中逐项展示，并自动参与最终推荐。</p>';
         $('riskParamContent').innerHTML = html;
     }
 
@@ -3433,7 +3489,7 @@ body {
     // 总览：5×5 风险矩阵 + 全量风险表
     function renderSafetyOverview() {
         var html = '<div class="research-section-title">一、5×5 风险矩阵总览图</div>' +
-            '<p class="research-intro" style="text-indent:0">横轴为可能性 L（1-5），纵轴为后果严重度 C（5-1）。图中每个单元格标注该位置对应的风险类别（所在模式以①②③④表示：①文化+ ②生态+ ③休闲+ ④医疗+），颜色代表风险等级。位置越靠右上角，风险越严重。</p>';
+            '<div class="matrix-help">横轴看发生可能性，纵轴看后果严重度。格子里的风险类别是系统真实纳入计算的风险点；没有具体风险落点的格子显示为“参考位”，用于补完整张矩阵，方便判断风险颜色和位置。</div>';
         // 构建矩阵：行=C(5→1)，列=L(1→5)
         var gridHtml = '<div class="risk-matrix-grid">' +
             '<div class="matrix-axis">C＼L</div>';
@@ -3460,7 +3516,7 @@ body {
                 } else {
                     var rEmpty = l2 * c;
                     gridHtml += '<div class="risk-cell ' + riskZoneClass(rEmpty) + ' risk-cell-empty">' +
-                        '<span class="rc-mode">理论区</span><span class="rc-value">R=' + rEmpty + '</span></div>';
+                        '<span class="rc-mode">参考位</span><span class="rc-value">R=' + rEmpty + '</span></div>';
                 }
             }
         }
@@ -3529,7 +3585,8 @@ body {
             '</div>';
 
         // 迷你风险矩阵
-        html += '<div class="research-section-title">风险矩阵定位图</div>';
+        html += '<div class="research-section-title">风险矩阵定位图</div>' +
+            '<div class="matrix-help">深色描边的是本模式真实风险位置；其余参考位用于保持矩阵完整，便于对照风险等级。</div>';
         var gridHtml = '<div class="risk-matrix-grid">' +
             '<div class="matrix-axis">C＼L</div>';
         for (var l = 1; l <= 5; l++) gridHtml += '<div class="matrix-cell-head">L=' + l + '</div>';
@@ -3547,7 +3604,7 @@ body {
                 } else {
                     var rEmpty = l2 * c;
                     gridHtml += '<div class="risk-cell ' + riskZoneClass(rEmpty) + ' risk-cell-empty">' +
-                        '<span class="rc-mode">理论区</span><span class="rc-value">R=' + rEmpty + '</span></div>';
+                        '<span class="rc-mode">参考位</span><span class="rc-value">R=' + rEmpty + '</span></div>';
                 }
             }
         }
@@ -3657,7 +3714,7 @@ body {
                 '</div>';
         });
         html += '</div>' +
-            '<p style="font-size:13px;color:#7c7668">风险矩阵为系统内置客观数据（与 Python 算法引擎 analysis.py 中 RISK_MATRIX 完全一致），共覆盖四大模式 16 类风险，逐类给出 L、C 取值与等级判定。详细矩阵图、风险表现与防护措施见"安全旅游分析"页面。客观安全度 G 将自动代入肆综合计算。</p>';
+            '<p style="font-size:13px;color:#7c7668">风险矩阵是系统内置的客观评估表，覆盖四大模式共16类风险。每个风险都按可能性 L 和后果 C 计算，结果会自动汇入后续推荐。</p>';
         $('riskMatrixPreview').innerHTML = html;
     }
 
@@ -3747,31 +3804,31 @@ body {
         var second = data.ranking[1];
         var gap = b.score - second.score;
 
-        var engineName = engine === 'python' ? 'Python 算法引擎（analysis.py：K均值聚类 / 余弦相似度 / 风险矩阵 / 综合推荐）' : '内置 JavaScript 引擎（未检测到 Python 服务，已自动降级，算法与 Python 端完全一致）';
+        var engineName = engine === 'python' ? '本地服务完成计算' : '浏览器完成计算';
         $('engineHint').className = 'engine-hint ' + engine;
-        $('engineHint').textContent = '计算引擎：' + (engine === 'python' ? 'Python 后端（app.py / analysis.py）' : 'JavaScript（启动 app.py 可切换为 Python 计算）');
+        $('engineHint').textContent = '计算完成';
 
-        var html = '<div style="margin-top:18px"><span class="engine-badge ' + engine + '">' + (engine === 'python' ? 'PYTHON 计算引擎' : 'JAVASCRIPT 计算引擎') + '</span>' +
+        var html = '<div style="margin-top:18px"><span class="engine-badge ' + engine + '">结果已生成</span>' +
             '<span style="font-size:12px;color:#7c7668;margin-left:10px">' + engineName + '</span></div>';
 
         // 第一步：用户画像
-        html += '<div class="research-section-title">第一步 · K均值聚类用户画像</div>' +
+        html += '<div class="research-section-title">第一步 · 用户画像</div>' +
             '<div class="persona-box">' +
             '<span class="persona-label">您的画像：</span>' +
             '<span class="persona-name">' + p.name + '</span>' +
-            '<span class="persona-sims">（聚类中心余弦相似度：' +
+            '<span class="persona-sims">（画像匹配：' +
             p.centerSims.map(function (s, i) {
                 return modePersonas[i] + '中心 ' + fmt(s);
             }).join('；') + '）</span>' +
             '</div>' +
-            '<p style="font-size:13px;color:#7c7668">系统基于样本游客兴趣画像进行聚类分析，将您的兴趣特征归入最匹配的客群类簇，输出与四种模式的相似度排名。</p>';
+            '<p style="font-size:13px;color:#7c7668">系统会根据您的兴趣打分，匹配最接近的客群画像，并同步比较四种康养模式。</p>';
 
         // 第二步：三要素表
-        html += '<div class="research-section-title">第二步 · 三要素量化（S / F / G 同等重要）</div>' +
+        html += '<div class="research-section-title">第二步 · 三项评分</div>' +
             '<div class="formula-box">' +
-            '<div class="fb-title">综合推荐数学模型</div>' +
+            '<div class="fb-title">综合推荐公式</div>' +
             '<div class="fb-formula">Score<sub>i</sub> = ⅓·S<sub>i</sub> + ⅓·F<sub>i</sub> + ⅓·G<sub>i</sub></div>' +
-            '<div class="fb-note">S = 兴趣匹配度（客观）｜F = 主观安全度（主观自评）｜G = 客观安全度（风险矩阵评定）｜三者权重相等</div>' +
+            '' +
             '</div>' +
             '<div style="overflow-x:auto"><table class="factor-table">' +
             '<tr><th>模式</th><th>S 兴趣匹配度</th><th>F 主观安全度</th><th>G 客观安全度</th><th>综合得分 Score</th><th>平均风险 R̄</th><th>风险等级</th><th>排名</th></tr>';
@@ -3801,8 +3858,8 @@ body {
             '<div class="fr-reasons"><h4 style="font-family:var(--font-serif);color:#1e3a29;margin:10px 0 6px">推荐理由（充分论证）：</h4><ul>' +
             '<li><strong>兴趣匹配（S=' + fmt(b.S) + '）：</strong>' +
             (b.mode === p.cluster ?
-                '您的兴趣向量经 K 均值聚类归入"' + p.name + '"画像，与' + b.name + '的特征向量余弦相似度在四模式中' + (b.S === data.sims[0] && b.S >= data.sims[1] ? '最高' : '居前') + '，' + modeDetail[b.mode].who + '群体最契合该模式。' :
-                '您的兴趣与' + b.name + '的余弦相似度为 ' + fmt(b.S) + '，是您兴趣特征的' + (b.S >= 0.8 ? '高度' : '较为') + '匹配模式。') + '</li>' +
+                '您的兴趣打分与"' + p.name + '"画像接近，和' + b.name + '的适配度在四种模式中' + (b.S === data.sims[0] && b.S >= data.sims[1] ? '最高' : '居前') + '，' + modeDetail[b.mode].who + '群体较适合该模式。' :
+                '您的兴趣打分与' + b.name + '较为接近，是当前更适合尝试的模式。') + '</li>' +
             '<li><strong>主观安全（F=' + fmt(b.F) + '）：</strong>您对该模式的害怕度自评为 ' + fmt((1 - b.F) * 10, 1) + ' 分（满分10），主观接受度高，出行心理负担小。</li>' +
             '<li><strong>客观安全（G=' + fmt(b.G) + '，R̄=' + fmt(b.avgR, 1) + '）：</strong>风险矩阵量化显示该模式整体风险等级为' + b.level + '，四类风险中最高为' + bRiskTop.name + '（R=' + (bRiskTop.L * bRiskTop.C) + '），按防护措施执行即可有效控制。</li>' +
             '<li><strong>综合得分 ' + fmt(b.score) + '，领先第二名' + second.name + '（' + fmt(second.score) + '）' + fmt(gap) + ' 分：</strong>虽然' + second.name + '的' +
@@ -3841,6 +3898,7 @@ body {
 
     var currentChartType = null;
     var modeColors = ['#a63a2b', '#3e6b4f', '#c07a2f', '#2f5d7c'];
+    var chartFont = '"Microsoft YaHei UI", "PingFang SC", "Noto Sans SC", sans-serif';
 
     function renderChart(type) {
         currentChartType = type;
@@ -3879,8 +3937,8 @@ body {
 
     // 三曲线差值图
     function buildTriCurveCard() {
-        return chartHeader('三曲线差值图 · 用户兴趣曲线 / 推荐模式特征曲线 / 差值曲线', 'triCurveCanvas',
-            legendItem('用户兴趣曲线', '#2f5d7c') + legendItem('推荐模式特征曲线', '#a63a2b') + legendItem('差值（模式−用户）', '#3e6b4f')) +
+        return chartHeader('兴趣匹配曲线', 'triCurveCanvas',
+            legendItem('您的兴趣', '#2f5d7c') + legendItem('推荐模式', '#a63a2b') + legendItem('兴趣差距', '#3e6b4f')) +
             '<div class="chart-explanation" id="triCurveExplain"></div>';
     }
 
@@ -3889,10 +3947,13 @@ body {
         if (!canvas) return;
         var ctx = canvas.getContext('2d');
         var W = canvas.width, H = canvas.height;
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = '#fffdf6';
+        ctx.fillRect(0, 0, W, H);
         var userVec = lastInputs ? lastInputs.interests.slice() : [8, 3, 2, 5];
         var bestMode = lastResult ? lastResult.best.mode : 0;
         var feat = modeFeatures[bestMode];
-        var diff = feat.map(function (v, i) { return v - userVec[i]; });
+        var diff = feat.map(function (v, i) { return Math.abs(v - userVec[i]); });
 
         var padL = 62, padR = 26, padT = 34, padB = 48;
         var pw = W - padL - padR, ph = H - padT - padB;
@@ -3902,7 +3963,7 @@ body {
         function yOf(v) { return padT + ph * (1 - v / 10); }
 
         // 网格与坐标
-        ctx.font = '12px "Microsoft YaHei"';
+        ctx.font = '12px ' + chartFont;
         ctx.textAlign = 'center';
         for (var g = 0; g <= 10; g += 2) {
             var gy = yOf(g);
@@ -3970,10 +4031,10 @@ body {
         ctx.lineWidth = 1.4;
         ctx.beginPath(); ctx.moveTo(padL, yOf(0)); ctx.lineTo(W - padR, yOf(0)); ctx.stroke();
 
-        var explanation = '上图展示用户兴趣曲线（蓝）与推荐模式「' + modeNames[bestMode] + '」特征曲线（红）沿文化/生态/休闲/医疗四个维度的分布对比，绿色虚线为两者差值（模式特征 − 用户兴趣），绿色面积表示模式供给超出用户兴趣的部分。' +
+        var explanation = '上图展示用户兴趣曲线（蓝）与推荐模式「' + modeNames[bestMode] + '」特征曲线（红）沿文化/生态/休闲/医疗四个维度的分布对比，绿色虚线表示两者差距，曲线越低说明匹配越紧密。' +
             (lastResult ?
-                '当前推荐模式为「' + modeNames[bestMode] + '」，兴趣匹配度 S=' + lastResult.best.S.toFixed(3) + '，曲线重合度越高说明该模式越契合您的兴趣结构。' :
-                '尚未进行数据化选择，当前展示示例数据（可在数据化选择页计算后查看个性化曲线）。');
+                '当前推荐模式为「' + modeNames[bestMode] + '」，兴趣匹配度 S=' + lastResult.best.S.toFixed(3) + '，两条曲线越接近，说明该模式越契合您的兴趣结构。' :
+                '尚未进行数据化选择，当前展示示例数据。');
         $('triCurveExplain').innerHTML = explanation;
     }
 
@@ -3989,6 +4050,9 @@ body {
         if (!canvas) return;
         var ctx = canvas.getContext('2d');
         var W = canvas.width, H = canvas.height;
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = '#fffdf6';
+        ctx.fillRect(0, 0, W, H);
         var cx = W / 2, cy = H / 2, R = Math.min(W, H) / 2 - 74;
         var n = 4;
         var userVec = lastInputs ? lastInputs.interests.slice() : [8, 3, 2, 5];
@@ -4011,7 +4075,7 @@ body {
             ctx.lineWidth = 1;
             ctx.stroke();
             ctx.fillStyle = '#a8a190';
-            ctx.font = '11px "Microsoft YaHei"';
+            ctx.font = '11px ' + chartFont;
             ctx.textAlign = 'left';
             ctx.fillText(g, cx + 4, cy - (g / 10) * R);
         }
@@ -4026,7 +4090,7 @@ body {
             // 轴标签
             var lp = point(i2, 11);
             ctx.fillStyle = '#26231e';
-            ctx.font = '13px "Microsoft YaHei"';
+            ctx.font = '13px ' + chartFont;
             ctx.textAlign = lp[0] > cx + 6 ? 'left' : (lp[0] < cx - 6 ? 'right' : 'center');
             ctx.fillText(dimNames[i2], lp[0], lp[1]);
         }
@@ -4053,12 +4117,10 @@ body {
         drawPolygon(userVec, '#26231e', 3, 0.16);
 
         var bestMode = lastResult ? lastResult.best.mode : 0;
-        var explanation = '雷达图以四个兴趣维度为轴，将您的兴趣向量（黑色加粗）与四种康养模式的特征向量（彩色）叠加对比。多边形与黑色轮廓的重合程度直观反映兴趣匹配度：' +
+        var explanation = '雷达图把四个兴趣维度放在同一张图里，黑色轮廓代表您的偏好，彩色轮廓代表四种康养模式：' +
             (lastResult ?
-                '您的兴趣向量与「' + modeNames[bestMode] + '」的余弦相似度最高（S=' + lastResult.best.S.toFixed(3) + '），图中表现为两者轮廓最为接近。' +
-                '其余模式与您兴趣的相似度分别为：' + lastResult.sims.map(function (s) {
-                    return s.toFixed(3);
-                }).join(' / ') + '。' :
+                '您的偏好与「' + modeNames[bestMode] + '」最接近，图中表现为两者轮廓更贴合。' +
+                '其他模式也会保留在图中，方便您横向比较。' :
                 '尚未进行数据化选择，当前展示示例数据。');
         $('radarExplain').innerHTML = explanation;
     }
@@ -4070,7 +4132,7 @@ body {
 
     // 饼状分布图
     function buildPieCard() {
-        return chartHeader('饼状分布图 · 四模式综合得分占比 与 16类风险等级分布', 'pieCanvas') +
+        return chartHeader('分布占比图', 'pieCanvas') +
             '<div class="chart-explanation" id="pieExplain"></div>';
     }
 
@@ -4079,10 +4141,16 @@ body {
         if (!canvas) return;
         var ctx = canvas.getContext('2d');
         var W = canvas.width, H = canvas.height;
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = '#fffdf6';
+        ctx.fillRect(0, 0, W, H);
         var cx1 = W * 0.27, cx2 = W * 0.73, cy = H / 2 + 8, r = Math.min(W, H) / 2 - 78;
 
         // 左饼：综合得分占比
-        var scores = lastResult ? lastResult.ranking.map(function (p) { return p.score; }) : [0.6, 0.55, 0.7, 0.5];
+        var scores = lastResult ? modeNames.map(function (_, i) {
+            var found = lastResult.ranking.filter(function (p) { return p.mode === i; })[0];
+            return found ? found.score : 0;
+        }) : [0.6, 0.55, 0.7, 0.5];
         var sum = scores.reduce(function (a, b) { return a + b; }, 0);
         var start = -Math.PI / 2;
         scores.forEach(function (s, i) {
@@ -4101,13 +4169,13 @@ body {
             var mid = (start + end) / 2;
             var lx = cx1 + (r + 20) * Math.cos(mid), ly = cy + (r + 20) * Math.sin(mid);
             ctx.fillStyle = '#26231e';
-            ctx.font = '12px "Microsoft YaHei"';
+            ctx.font = '12px ' + chartFont;
             ctx.textAlign = mid > -Math.PI / 2 && mid < Math.PI / 2 ? 'left' : 'right';
             ctx.fillText(modeNames[i].slice(0, 2) + ' ' + (frac * 100).toFixed(1) + '%', lx, ly);
             start = end;
         });
         ctx.fillStyle = '#26231e';
-        ctx.font = 'bold 14px "PingFang SC","Microsoft YaHei",sans-serif';
+        ctx.font = '600 14px ' + chartFont;
         ctx.textAlign = 'center';
         ctx.fillText('四模式综合得分占比', cx1, cy - r - 26);
 
@@ -4142,16 +4210,17 @@ body {
             var mid = (start2 + end) / 2;
             var lx = cx2 + (r + 20) * Math.cos(mid), ly = cy + (r + 20) * Math.sin(mid);
             ctx.fillStyle = '#26231e';
-            ctx.font = '12px "Microsoft YaHei"';
+            ctx.font = '12px ' + chartFont;
             ctx.textAlign = mid > -Math.PI / 2 && mid < Math.PI / 2 ? 'left' : 'right';
             ctx.fillText(z.label + ' ' + z.val + '类', lx, ly);
             start2 = end;
         });
         ctx.fillStyle = '#26231e';
+        ctx.font = '600 14px ' + chartFont;
         ctx.textAlign = 'center';
         ctx.fillText('16类风险等级分布', cx2, cy - r - 26);
 
-        var explanation = '左图展示四种康养模式的综合得分占比（Score = ⅓S+⅓F+⅓G），面积越大代表该模式越适合您；右图统计四大模式全部 16 类风险的等级分布，直观呈现整体安全格局：' +
+        var explanation = '左图展示四种康养模式的综合得分占比，右图展示16类风险的等级分布：' +
             zoneCount.low + '类低风险、' + zoneCount.mid + '类中风险、' + zoneCount.high + '类高风险、' + zoneCount.extreme + '类极高风险。' +
             (lastResult ? '当前推荐：' + lastResult.best.name + '（综合得分占比 ' + (lastResult.best.score / sum * 100).toFixed(1) + '%）。' : '尚未进行数据化选择，当前展示示例得分。');
         $('pieExplain').innerHTML = explanation;
@@ -4199,7 +4268,7 @@ body {
         var arr = new Uint8Array(byteStr.length);
         for (var i = 0; i < byteStr.length; i++) arr[i] = byteStr.charCodeAt(i);
 
-        var chartName = { tricurve: '三曲线差值图', radar: '雷达图', pie: '饼状分布图' }[currentChartType];
+        var chartName = { tricurve: '兴趣匹配曲线', radar: '雷达对比图', pie: '分布占比图' }[currentChartType];
         var doc = new docxLib.Document({
             sections: [{
                 children: [
@@ -4416,7 +4485,7 @@ body {
             if (el) el.addEventListener('click', function () { showPage(cardMap[id]); });
         });
         $('homeCardDigitalSandbox').addEventListener('click', function () {
-            window.open('https://zqy-hhh.github.io/sc-datav/', '_blank', 'noopener');
+            window.location.href = 'http://127.0.0.1:5178/sc-datav/';
         });
 
         // 轮播

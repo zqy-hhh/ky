@@ -151,6 +151,29 @@ const Circle = styled.circle`
   animation: scroll-drop 1.5s ease-in-out infinite;
 `;
 
+function returnToPlatformHome() {
+  if (window.history.length > 1) {
+    window.history.back();
+    return;
+  }
+
+  try {
+    if (window.opener && !window.opener.closed) {
+      window.opener.focus();
+      window.close();
+      return;
+    }
+  } catch {
+    // Fall through to a direct navigation fallback.
+  }
+
+  if (document.referrer) {
+    window.location.assign(document.referrer);
+    return;
+  }
+
+  window.location.assign(`${window.location.origin}/`);
+}
 export default function Index() {
   return (
     <Wrapper>
@@ -164,7 +187,7 @@ export default function Index() {
         <Bg />
       </Canvas>
 
-      <HomeButton type="button" onClick={() => window.history.back()}>
+      <HomeButton type="button" onClick={returnToPlatformHome}>
         <span aria-hidden="true">←</span>
         <span>返回首页</span>
       </HomeButton>
