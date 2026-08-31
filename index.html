@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.5">
-    <meta name="description" content="银发经济康养旅游数据化选择平台：用户画像、风险矩阵与综合旅游推荐">
-    <title>银发经济 · 康养旅游数据化选择平台</title>
+    <meta name="description" content="安途智算虚拟仿真系统：用户画像、风险矩阵与综合旅游推荐">
+    <title>安途智算虚拟仿真系统</title>
     <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.min.js"></script>
     <style>
 /* ============================================================
-   银发经济 · 康养旅游数据化选择平台
+   安途智算虚拟仿真系统
    政务门户风格 · 松绿 + 印章红 + 宣纸底色
    ============================================================ */
 
@@ -47,8 +47,8 @@
     --radius: 6px;
     --shadow: 0 1px 3px rgba(38, 35, 30, .08);
     --shadow-lg: 0 4px 14px rgba(38, 35, 30, .12);
-    --font-serif: "STZhongsong", "华文中宋", "SimSun", "宋体", "Noto Serif SC", serif;
-    --font-body: "Microsoft YaHei", "微软雅黑", "PingFang SC", "SimHei", sans-serif;
+    --font-serif: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+    --font-body: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -110,7 +110,6 @@ body {
     letter-spacing: 2px;
     text-indent: 2px;
     background: rgba(166, 58, 43, .28);
-    transform: rotate(-2deg);
     box-shadow: inset 0 0 0 2px rgba(232, 226, 212, .35);
 }
 
@@ -195,20 +194,22 @@ body {
 .masthead {
     background: linear-gradient(160deg, var(--green-800) 0%, var(--green-900) 78%);
     border-radius: var(--radius);
-    padding: 34px 38px 28px;
+    padding: 30px 38px 24px;
     color: #f2ecdd;
     position: relative;
     overflow: hidden;
+    isolation: isolate;
     border: 1px solid #16301f;
 }
 
 .masthead::after {
     content: "";
     position: absolute;
-    right: -60px; top: -60px;
+    right: -90px; top: -90px;
     width: 220px; height: 220px;
     border: 2px solid rgba(217, 176, 140, .28);
     border-radius: 50%;
+    z-index: -1;
 }
 
 .masthead::before {
@@ -218,6 +219,7 @@ body {
     width: 120px; height: 120px;
     border: 2px solid rgba(217, 176, 140, .18);
     border-radius: 50%;
+    z-index: -1;
 }
 
 .masthead-title {
@@ -387,9 +389,11 @@ body {
 /* ============ 首页轮播 ============ */
 .home-carousel {
     position: relative;
+    z-index: 2;
     border-radius: var(--radius);
     overflow: hidden;
     margin-bottom: 22px;
+    margin-top: 4px;
     border: 1px solid var(--line);
     box-shadow: var(--shadow);
     background: #e9e4d6;
@@ -402,7 +406,7 @@ body {
 
 .carousel-slide {
     min-width: 100%;
-    height: 320px;
+    height: 380px;
     position: relative;
 }
 
@@ -973,6 +977,9 @@ body {
 .risk-cell.zone-mid { background: var(--zone-mid); }
 .risk-cell.zone-high { background: var(--zone-high); }
 .risk-cell.zone-extreme { background: var(--zone-extreme); }
+
+.risk-cell-empty { opacity: .42; }
+.risk-cell-empty .rc-mode { font-weight: normal; font-size: 11px; }
 
 .risk-cell .rc-mode { font-weight: bold; font-size: 12px; }
 .risk-cell .rc-value { opacity: .92; }
@@ -2114,9 +2121,9 @@ body {
         <!-- 左侧导航栏 -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <div class="seal">康旅</div>
-                <div class="sidebar-brand">银发经济 · 康养旅游</div>
-                <div class="sidebar-sub">数据化选择平台</div>
+                <div class="seal">安途</div>
+                <div class="sidebar-brand">安途智算</div>
+                <div class="sidebar-sub">虚拟仿真系统</div>
             </div>
             <nav class="sidebar-nav">
                 <div class="nav-section-title">平台功能</div>
@@ -2145,7 +2152,7 @@ body {
             <!-- 系统首页 -->
             <div id="homePage" class="page active">
                 <div class="masthead">
-                    <h1 class="masthead-title">银发经济 · 康养旅游数据化选择平台</h1>
+                    <h1 class="masthead-title">安途智算虚拟仿真系统</h1>
                     <p class="masthead-sub">健康养生旅游模式可视化选择系统 —— 用户画像 · 风险矩阵 · 综合推荐</p>
                     <div class="masthead-date" id="mastheadDate"></div>
                 </div>
@@ -2350,7 +2357,7 @@ body {
             <!-- 反馈与建议 -->
             <div id="feedbackPage" class="page">
                 <div class="page-header">
-                    <h1 class="page-title">银发经济·康养旅游平台 用户反馈与调研建议</h1>
+                    <h1 class="page-title">安途智算虚拟仿真系统 用户反馈与调研建议</h1>
                 </div>
                 <div class="content-card">
                     <div class="feedback-contact-info">
@@ -2583,7 +2590,7 @@ body {
 
     <script>
 /* ============================================================
-   银发经济 · 康养旅游数据化选择平台 —— 前端引擎
+   安途智算虚拟仿真系统 —— 前端引擎
    语言构成：HTML + CSS + JavaScript（本文件）+ Python（analysis.py / app.py）
    计算策略：优先调用 Python 后端 /api/analyze，失败时自动降级为
    本文件内置的同算法 JavaScript 引擎（K均值聚类 / 余弦相似度 /
@@ -3242,7 +3249,7 @@ body {
     function renderRiskMatrixIntro() {
         var html =
             '<div class="research-section-title">四、风险矩阵 —— 数据安全分析工具</div>' +
-            '<p class="research-intro">风险矩阵（Risk Matrix）是一种国际上广泛使用的风险评估工具。它将每类风险从两个维度进行量化：<strong>可能性 L</strong>（风险发生的概率，1-5分）与<strong>后果严重度 C</strong>（风险发生后的影响程度，1-5分），风险值 <span class="formula-inline">R = L × C</span>（取值范围1-25）。根据风险值所在区间，将风险划分为四个等级，并采取不同强度的处置措施。</p>' +
+            '<p class="research-intro">风险矩阵（Risk Matrix）是一种国际上广泛使用的风险评估工具。它将每类风险从两个维度进行量化：<strong>可能性 L</strong>（风险发生的概率，1-5分）与<strong>后果严重度 C</strong>（风险发生后的影响程度，1-5分），再综合评定风险等级（取值范围1-25）。根据风险值所在区间，将风险划分为四个等级，并采取不同强度的处置措施。</p>' +
             '<table class="matrix-method-table">' +
             '<tr><th>风险等级</th><th>风险值 R</th><th>颜色标识</th><th>处置原则</th></tr>' +
             '<tr><td>低风险</td><td>1 - 4</td><td><span class="zone-badge zone-low">绿色</span></td><td>常规管理，保持关注</td></tr>' +
@@ -3250,7 +3257,7 @@ body {
             '<tr><td>高风险</td><td>10 - 15</td><td><span class="zone-badge zone-high">橙色</span></td><td>重点管控，专项措施</td></tr>' +
             '<tr><td>极高风险</td><td>16 - 25</td><td><span class="zone-badge zone-extreme">红色</span></td><td>立即整改，必要时取消行程</td></tr>' +
             '</table>' +
-            '<p class="research-intro">本平台将风险矩阵应用于四种康养旅游模式的安全分析：为每类风险评定 L 值与 C 值，计算风险值并划分等级，进而得到各模式的客观安全度 <span class="formula-inline">G = 1 − R̄/25</span>（R̄ 为该模式平均风险值）。该客观安全度与用户主观安全自评、兴趣匹配度一起，构成数据化选择的三大核心要素。</p>' +
+            '<p class="research-intro">本平台将风险矩阵应用于四种康养旅游模式的安全分析：为每类风险评定 L 值与 C 值，计算风险值并划分等级，进而得到各模式的客观安全度（R̄ 为该模式平均风险值）。该客观安全度与用户主观安全自评、兴趣匹配度一起，构成数据化选择的三大核心要素。</p>' +
             '<p class="research-intro">四种模式的风险矩阵量化结果如下：文化+模式平均风险值 R̄=9.5（中），生态+模式 R̄=14.0（高），休闲+模式 R̄=9.5（中），医疗+模式 R̄=11.0（高）。客观安全度 G 分别为 0.62、0.44、0.62、0.56，为后续综合推荐计算提供数据支撑。详见"安全旅游分析"页面。</p>';
         $('riskMatrixIntroContent').innerHTML = html;
     }
@@ -3387,16 +3394,15 @@ body {
             '<tr><td><strong>定性说明</strong></td><td>无需处理</td><td>简单处理即可</td><td>需就医或中止行程</td><td>需住院治疗</td><td>危及生命</td></tr></table>' +
             '</div>' +
             '<div class="param-card">' +
-            '<div class="param-card-title">参数三：风险值 R = L × C 的等级划分（区间1-25）</div>' +
+            '<div class="param-card-title">参数三：风险值 R 的等级划分（区间1-25）</div>' +
             '<table><tr><th>等级</th><th>低风险</th><th>中风险</th><th>高风险</th><th>极高风险</th></tr>' +
             '<tr><td><strong>R 区间</strong></td><td>1 - 4</td><td>5 - 9</td><td>10 - 15</td><td>16 - 25</td></tr>' +
             '<tr><td><strong>颜色标识</strong></td><td><span class="zone-badge zone-low">绿色</span></td><td><span class="zone-badge zone-mid">黄色</span></td><td><span class="zone-badge zone-high">橙色</span></td><td><span class="zone-badge zone-extreme">红色</span></td></tr>' +
             '<tr><td><strong>处置原则</strong></td><td>常规管理</td><td>加强防范、制定预案</td><td>重点管控、专项措施</td><td>立即整改、必要时取消行程</td></tr></table>' +
             '</div>' +
             '<div class="param-card">' +
-            '<div class="param-card-title">参数四：客观安全度 G 的计算公式</div>' +
-            '<p style="text-align:center"><span class="formula-inline">G = 1 − R̄ / 25</span></p>' +
-            '<p style="text-align:center;font-size:13px;color:#7c7668;margin-top:8px">其中 R̄ 为该模式全部 4 类风险的平均风险值。G 越接近 1 表示该模式客观上越安全。</p>' +
+            '<div class="param-card-title">参数四：客观安全度 G 的评定说明</div>' +
+            '<p style="text-align:center;font-size:14px;color:#4d483f">由该模式全部风险类别的平均风险值综合评定，G 越接近 1 表示该模式客观上越安全。</p>' +
             '</div>' +
             '<p class="research-intro">以上参数在"安全旅游分析"页面逐类逐项给出具体取值（L、C、R、等级、风险表现与防护措施），在"数据化选择"页面自动代入综合推荐模型计算。</p>';
         $('riskParamContent').innerHTML = html;
@@ -3441,7 +3447,9 @@ body {
                             return '<span class="rc-mode">' + '①②③④'[e.mode] + e.name + '</span><span class="rc-value">R=' + e.R + '</span>';
                         }).join('') + '</div>';
                 } else {
-                    gridHtml += '<div class="risk-cell" style="background:#efeadd;color:#7c7668">—</div>';
+                    var rEmpty = l2 * c;
+                    gridHtml += '<div class="risk-cell ' + riskZoneClass(rEmpty) + ' risk-cell-empty">' +
+                        '<span class="rc-mode">理论区</span><span class="rc-value">R=' + rEmpty + '</span></div>';
                 }
             }
         }
@@ -3457,7 +3465,7 @@ body {
         html += gridHtml +
             '<div class="research-section-title">二、16 类风险全量评估表</div>' +
             '<div style="overflow-x:auto"><table class="risk-full-table">' +
-            '<tr><th>风险类别</th><th>涉及模式</th><th>L（可能性）</th><th>C（后果）</th><th>R = L×C</th><th>风险等级</th><th>最高风险表现</th></tr>';
+            '<tr><th>风险类别</th><th>涉及模式</th><th>L（可能性）</th><th>C（后果）</th><th>风险值 R</th><th>风险等级</th><th>最高风险表现</th></tr>';
         var seen = {};
         for (var m2 = 0; m2 < 4; m2++) {
             riskMatrixData[m2].forEach(function (cat) {
@@ -3504,9 +3512,9 @@ body {
         var rs = modeRiskSummary(modeIdx);
         var html = '<div class="mode-safety-summary">' +
             '<div class="ms-item" style="border-top:3px solid ' + colors[modeIdx] + '"><div class="ms-label">模式</div><div class="ms-value" style="font-size:17px">' + modeNames[modeIdx] + '</div><div class="ms-note">适合人群：' + modePersonas[modeIdx] + '</div></div>' +
-            '<div class="ms-item" style="border-top:3px solid ' + colors[modeIdx] + '"><div class="ms-label">平均风险值 R̄</div><div class="ms-value">' + rs.avgR.toFixed(1) + '</div><div class="ms-note">= ' + rs.r_list.join('+') + ' ÷ 4</div></div>' +
+            '<div class="ms-item" style="border-top:3px solid ' + colors[modeIdx] + '"><div class="ms-label">平均风险值 R̄</div><div class="ms-value">' + rs.avgR.toFixed(1) + '</div><div class="ms-note">四类风险综合评定</div></div>' +
             '<div class="ms-item" style="border-top:3px solid ' + colors[modeIdx] + '"><div class="ms-label">综合风险等级</div><div class="ms-value"><span class="zone-badge ' + riskZoneClass(Math.round(rs.avgR)) + '" style="font-size:16px">' + rs.level + '</span></div><div class="ms-note">依据 R̄ 四舍五入判定</div></div>' +
-            '<div class="ms-item" style="border-top:3px solid ' + colors[modeIdx] + '"><div class="ms-label">客观安全度 G</div><div class="ms-value">' + rs.G.toFixed(2) + '</div><div class="ms-note">G = 1 − R̄/25</div></div>' +
+            '<div class="ms-item" style="border-top:3px solid ' + colors[modeIdx] + '"><div class="ms-label">客观安全度 G</div><div class="ms-value">' + rs.G.toFixed(2) + '</div><div class="ms-note">由平均风险值换算</div></div>' +
             '</div>';
 
         // 迷你风险矩阵
@@ -3526,7 +3534,9 @@ body {
                     gridHtml += '<div class="risk-cell ' + riskZoneClass(r) + '" style="border:2px solid #26231e">' +
                         '<span class="rc-mode">' + entry.name + '</span><span class="rc-value">R=' + r + '</span></div>';
                 } else {
-                    gridHtml += '<div class="risk-cell" style="background:#efeadd;color:#7c7668">—</div>';
+                    var rEmpty = l2 * c;
+                    gridHtml += '<div class="risk-cell ' + riskZoneClass(rEmpty) + ' risk-cell-empty">' +
+                        '<span class="rc-mode">理论区</span><span class="rc-value">R=' + rEmpty + '</span></div>';
                 }
             }
         }
@@ -3614,7 +3624,7 @@ body {
             var fl = fearLevelText(f);
             html += '<strong>' + modeNames[i] + '：</strong>害怕度 ' + f.toFixed(1) + ' / 10' +
                 '（<span class="zone-badge ' + fl.cls + '">' + fl.text + '</span>）' +
-                '，主观安全度 F = 1 − 害怕度/10 = <strong>' + g.toFixed(2) + '</strong><br>';
+                '，主观安全度 F = <strong>' + g.toFixed(2) + '</strong><br>';
         });
         panel.innerHTML = html;
     }
@@ -3729,14 +3739,14 @@ body {
                 return modePersonas[i] + '中心 ' + fmt(s);
             }).join('；') + '）</span>' +
             '</div>' +
-            '<p style="font-size:13px;color:#7c7668">K均值聚类以 12 位样本游客的兴趣向量为训练样本、四种模式特征向量为初始聚类中心，按余弦距离迭代收敛后，将您的兴趣向量归入相似度最高的类簇。</p>';
+            '<p style="font-size:13px;color:#7c7668">系统基于样本游客兴趣画像进行聚类分析，将您的兴趣特征归入最匹配的客群类簇，输出与四种模式的相似度排名。</p>';
 
         // 第二步：三要素表
         html += '<div class="research-section-title">第二步 · 三要素量化（S / F / G 同等重要）</div>' +
             '<div class="formula-box">' +
             '<div class="fb-title">综合推荐数学模型</div>' +
             '<div class="fb-formula">Score<sub>i</sub> = ⅓·S<sub>i</sub> + ⅓·F<sub>i</sub> + ⅓·G<sub>i</sub></div>' +
-            '<div class="fb-note">S = 兴趣匹配度（余弦相似度，客观）｜F = 主观安全度（1 − 害怕度/10，主观）｜G = 客观安全度（1 − R̄/25，风险矩阵）｜三者权重相等</div>' +
+            '<div class="fb-note">S = 兴趣匹配度（客观）｜F = 主观安全度（主观自评）｜G = 客观安全度（风险矩阵评定）｜三者权重相等</div>' +
             '</div>' +
             '<div style="overflow-x:auto"><table class="factor-table">' +
             '<tr><th>模式</th><th>S 兴趣匹配度</th><th>F 主观安全度</th><th>G 客观安全度</th><th>综合得分 Score</th><th>平均风险 R̄</th><th>风险等级</th><th>排名</th></tr>';
@@ -4129,7 +4139,7 @@ body {
         if (!lastResult) { alert('请先在"数据化选择"页面完成综合计算'); return; }
         var XLSXLib = window.XLSX;
         if (!XLSXLib) { alert('Excel 组件未加载成功，请检查网络后刷新页面'); return; }
-        var rows = [['银发经济 · 康养旅游数据化选择报告', '', '', '', '', '', '']];
+        var rows = [['安途智算虚拟仿真系统 推荐报告', '', '', '', '', '', '']];
         rows.push(['计算引擎', lastEngine === 'python' ? 'Python（analysis.py）' : 'JavaScript', '', '', '', '', '']);
         rows.push(['用户画像', lastResult.persona.name, '', '', '', '', '']);
         rows.push(['兴趣输入', dimNames.join('/') + '：' + lastInputs.interests.join('、'), '', '', '', '', '']);
@@ -4169,7 +4179,7 @@ body {
         var doc = new docxLib.Document({
             sections: [{
                 children: [
-                    new docxLib.Paragraph({ text: '银发经济 · 康养旅游数据化选择平台', heading: docxLib.HeadingLevel.HEADING_1 }),
+                    new docxLib.Paragraph({ text: '安途智算虚拟仿真系统', heading: docxLib.HeadingLevel.HEADING_1 }),
                     new docxLib.Paragraph({ text: '可视化分析报告 —— ' + chartName, heading: docxLib.HeadingLevel.HEADING_2 }),
                     new docxLib.Paragraph({
                         children: [new docxLib.ImageRun({
@@ -4205,7 +4215,7 @@ body {
                 '最终推荐：' + b.name + '（S=' + b.S.toFixed(3) + '，F=' + b.F.toFixed(3) + '，G=' + b.G.toFixed(3) + '，Score=' + b.score.toFixed(3) + '）。' +
                 '消费建议：' + lastResult.tier + '档' + lastResult.tier_name + '。';
         }
-        return '你是"小旅"，银发经济·康养旅游数据化选择平台的在线客服助手，服务对象以中老年游客为主。' +
+        return '你是"小旅"，安途智算虚拟仿真系统的在线客服助手，服务对象以中老年游客为主。' +
             '请用简洁、亲切、有礼貌的中文回复，避免使用网络流行语，语气温和耐心。' +
             '\n\n【平台功能】' +
             '\n- 左侧导航：系统首页、背景与模式、养生方式、兴趣打分表、旅游组群、安全旅游分析、数据化选择、可视化分析、反馈与建议' +
