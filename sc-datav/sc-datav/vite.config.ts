@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
   base: "/sc-datav/",
   server: {
-    port: 5176,
+    port: 5178,
     host: "127.0.0.1",
   },
   resolve: {
