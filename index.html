@@ -3821,7 +3821,8 @@ body {
                 return modePersonas[i] + '中心 ' + fmt(s);
             }).join('；') + '）</span>' +
             '</div>' +
-            '<p style="font-size:13px;color:#7c7668">系统会根据您的兴趣打分，匹配最接近的客群画像，并同步比较四种康养模式。</p>';
+            '<p style="font-size:13px;color:#7c7668">系统会根据您的兴趣打分，匹配最接近的客群画像，并同步比较四种康养模式。</p>' +
+            '<div class="action-bar" style="margin-top:10px"><button class="btn-primary" id="scenicProfileBtn">查看画像景点推荐</button></div>';
 
         // 第二步：三要素表
         html += '<div class="research-section-title">第二步 · 三项评分</div>' +
@@ -3884,6 +3885,12 @@ body {
             $('aiChatPanel').classList.add('open');
             appendChatMsg('user', '请帮我分析一下推荐结果');
             handleAIQuery('我的推荐模式是' + b.name + '，请帮我分析一下这个推荐合适吗？', false);
+        });
+        var profileNames = ['culture', 'ecology', 'leisure', 'medical'];
+        var scenicProfileBtn = $('scenicProfileBtn');
+        if (scenicProfileBtn) scenicProfileBtn.addEventListener('click', function () {
+            var profile = profileNames[p.cluster] || profileNames[b.mode] || 'culture';
+            window.location.href = 'http://127.0.0.1:5178/sc-datav/#/demo1?profile=' + encodeURIComponent(profile);
         });
         var speakBtn = $('speakRecommendBtn');
         if (speakBtn) speakBtn.addEventListener('click', function () {

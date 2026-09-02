@@ -46,6 +46,7 @@ export default function Base(props: BaseProps) {
   const groupRef = useRef<Group>(null!);
   const camera = useThree((state) => state.camera);
   const mapMode = useConfigStore((state) => state.mapMode);
+  const scenicCategory = useConfigStore((state) => state.scenicCategory);
 
   const projection = useMemo(() => {
     return geoMercator()
@@ -179,6 +180,7 @@ export default function Base(props: BaseProps) {
               size={0.12}
               variant="beam"
               showLabels
+              category={scenicCategory}
               onSelect={(spot) => useConfigStore.getState().selectScenic(spot)}
             />
           )}

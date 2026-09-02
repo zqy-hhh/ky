@@ -6,6 +6,10 @@ import { AdditiveBlending, DoubleSide, Vector3, type Mesh } from "three";
 import styled from "styled-components";
 import type { ScenicSpot } from "@/data/scenicSpots";
 import { scenicSpots } from "@/data/scenicSpots";
+import {
+  getScenicCategory,
+  type ScenicCategoryId,
+} from "@/data/scenicCategories";
 
 const TooltipBox = styled.div`
   min-width: 174px;
@@ -65,6 +69,7 @@ export interface ScenicMarkersProps {
   variant?: "dot" | "beam";
   showLabels?: boolean;
   beamHeight?: number;
+  category?: ScenicCategoryId;
 }
 
 export default function ScenicMarkers(props: ScenicMarkersProps) {
@@ -77,14 +82,17 @@ export default function ScenicMarkers(props: ScenicMarkersProps) {
     variant = "dot",
     showLabels = false,
     beamHeight = 1.3,
+    category,
   } = props;
   const points = useMemo(
     () =>
-      scenicSpots.map((spot) => {
+      scenicSpots
+        .filter((spot) => !category || getScenicCategory(spot.id) === category)
+        .map((spot) => {
         const [x, y] = projection([spot.longitude, spot.latitude])!;
         return { spot, position: new Vector3(x, -y, depth + 0.18) };
       }),
-    [depth, projection]
+    [category, depth, projection]
   );
 
   return (

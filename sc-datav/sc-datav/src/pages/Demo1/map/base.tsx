@@ -39,6 +39,7 @@ export default function Base(props: BaseProps) {
   const groupRef = useRef<Group>(null!);
   const camera = useThree((state) => state.camera);
   const mapMode = useConfigStore((state) => state.mapMode);
+  const scenicCategory = useConfigStore((state) => state.scenicCategory);
 
   const texture = use(satelliteTexture);
 
@@ -146,6 +147,7 @@ export default function Base(props: BaseProps) {
           variant="beam"
           showLabels
           beamHeight={4.5}
+          category={scenicCategory}
           onSelect={(spot) => useConfigStore.getState().selectScenic(spot)}
         />
       )}
