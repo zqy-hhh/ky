@@ -4,6 +4,9 @@ import styled from "styled-components";
 import AutoFit from "@/components/autoFit";
 import useMoveTo from "@/hooks/useMoveTo";
 import type { ScenicSpot } from "@/data/scenicSpots";
+import { scenicSpots } from "@/data/scenicSpots";
+import { getScenicCategory } from "@/data/scenicCategories";
+import ScenicCategorySwitch from "@/components/scenicCategorySwitch";
 import { useConfigStore } from "../stores";
 import Headder from "./headder";
 
@@ -323,6 +326,9 @@ const CloseButton = styled.button`
 
 export default function Panel() {
   const selectedScenic = useConfigStore((state) => state.selectedScenic);
+  const scenicCategory = useConfigStore((state) => state.scenicCategory);
+  const setScenicCategory = useConfigStore((state) => state.setScenicCategory);
+  const selectScenic = useConfigStore((state) => state.selectScenic);
   const mapMode = useConfigStore((state) => state.mapMode);
   const setMapMode = useConfigStore((state) => state.setMapMode);
   const topBox = useMoveTo<HTMLElement>("toBottom", 0.6);
@@ -338,6 +344,11 @@ export default function Panel() {
 
   useEffect(() => setImageOpen(null), [selectedScenic]);
 
+  const handleCategoryChange = (category: Parameters<typeof setScenicCategory>[0]) => {
+    setScenicCategory(category);
+    selectScenic(scenicSpots.find((spot) => getScenicCategory(spot.id) === category) ?? null);
+  };
+
   return (
     <>
       <AutoFit>
@@ -352,6 +363,7 @@ export default function Panel() {
             <EmptyHint>点击景区光柱查看景区详情</EmptyHint>
           ) : null}
         </GridWrapper>
+        <ScenicCategorySwitch active={scenicCategory} onChange={handleCategoryChange} />
         <ModeSwitch aria-label="地图显示模式">
           <button
             type="button"
