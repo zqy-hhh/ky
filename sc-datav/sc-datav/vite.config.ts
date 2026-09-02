@@ -5,7 +5,7 @@ import { resolve } from "node:path";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/sc-datav/",
+  base: "./",
   server: {
     port: 5178,
     host: "127.0.0.1",

@@ -2185,7 +2185,7 @@ body {
                 <a class="nav-item" id="navInterestScore" data-page="interestScorePage"><span class="nav-marker"></span><span>兴趣打分表</span></a>
                 <a class="nav-item" id="navSafetyAnalysis" data-page="safetyAnalysisPage"><span class="nav-marker"></span><span>安全旅游分析</span></a>
                 <a class="nav-item" id="navGroupPage" data-page="groupPage"><span class="nav-marker"></span><span>旅游组群</span></a>
-                <a class="nav-item" id="navDigitalSandbox" href="http://127.0.0.1:5178/sc-datav/"><span class="nav-marker"></span><span>数字沙盘</span></a>
+                <a class="nav-item" id="navDigitalSandbox" href="./sc-datav/sc-datav/dist/"><span class="nav-marker"></span><span>数字沙盘</span></a>
                 <div class="nav-section-title">数据分析</div>
                 <a class="nav-item" id="navDataSelect" data-page="dataSelectPage"><span class="nav-marker"></span><span>数据化选择</span></a>
                 <a class="nav-item" id="navVisual" data-page="visualPage"><span class="nav-marker"></span><span>可视化分析</span></a>
@@ -3486,10 +3486,41 @@ body {
         }
     }
 
+    var supplementalRiskMatrixLabels = {
+        "1-5": "罕见重大疾病发作",
+        "2-5": "紧急救援延误",
+        "3-5": "高危操作失误",
+        "4-5": "极端环境暴露",
+        "5-5": "重大交通事故",
+        "1-4": "证件遗失影响返程",
+        "2-4": "夜间转乘风险",
+        "3-4": "设施故障伤害",
+        "4-4": "群体秩序失控",
+        "5-4": "高峰拥挤踩踏",
+        "1-3": "路线临时变更",
+        "2-3": "住宿预订异常",
+        "3-3": "体力透支不适",
+        "4-3": "场地拥挤碰撞",
+        "5-3": "持续高温不适",
+        "1-2": "轻微财物遗落",
+        "2-2": "隐私信息泄露",
+        "3-2": "餐饮卫生波动",
+        "4-2": "消费价格争议",
+        "5-2": "高频服务投诉",
+        "1-1": "轻微排队延误",
+        "2-1": "餐饮口味不适",
+        "3-1": "临时服务等待",
+        "4-1": "行程信息误差",
+        "5-1": "轻微噪声干扰"
+    };
+
+    function supplementalRiskLabel(l, c) {
+        return supplementalRiskMatrixLabels[l + '-' + c] || "补充风险项";
+    }
     // 总览：5×5 风险矩阵 + 全量风险表
     function renderSafetyOverview() {
         var html = '<div class="research-section-title">一、5×5 风险矩阵总览图</div>' +
-            '<div class="matrix-help">横轴看发生可能性，纵轴看后果严重度。格子里的风险类别是系统真实纳入计算的风险点；没有具体风险落点的格子显示为“参考位”，用于补完整张矩阵，方便判断风险颜色和位置。</div>';
+            '<div class="matrix-help">横轴看发生可能性，纵轴看后果严重度。格子里的风险类别包含系统真实纳入计算的风险点，也补充展示同一风险等级下常见的具体场景，方便判断风险颜色和位置。</div>';
         // 构建矩阵：行=C(5→1)，列=L(1→5)
         var gridHtml = '<div class="risk-matrix-grid">' +
             '<div class="matrix-axis">C＼L</div>';
@@ -3516,7 +3547,7 @@ body {
                 } else {
                     var rEmpty = l2 * c;
                     gridHtml += '<div class="risk-cell ' + riskZoneClass(rEmpty) + ' risk-cell-empty">' +
-                        '<span class="rc-mode">参考位</span><span class="rc-value">R=' + rEmpty + '</span></div>';
+                        '<span class="rc-mode">' + supplementalRiskLabel(l2, c) + '</span><span class="rc-value">R=' + rEmpty + '</span></div>';
                 }
             }
         }
@@ -3586,7 +3617,7 @@ body {
 
         // 迷你风险矩阵
         html += '<div class="research-section-title">风险矩阵定位图</div>' +
-            '<div class="matrix-help">深色描边的是本模式真实风险位置；其余参考位用于保持矩阵完整，便于对照风险等级。</div>';
+            '<div class="matrix-help">深色描边的是本模式真实风险位置；其余格子补充展示同一风险等级下常见的具体场景，便于对照风险等级。</div>';
         var gridHtml = '<div class="risk-matrix-grid">' +
             '<div class="matrix-axis">C＼L</div>';
         for (var l = 1; l <= 5; l++) gridHtml += '<div class="matrix-cell-head">L=' + l + '</div>';
@@ -3604,7 +3635,7 @@ body {
                 } else {
                     var rEmpty = l2 * c;
                     gridHtml += '<div class="risk-cell ' + riskZoneClass(rEmpty) + ' risk-cell-empty">' +
-                        '<span class="rc-mode">参考位</span><span class="rc-value">R=' + rEmpty + '</span></div>';
+                        '<span class="rc-mode">' + supplementalRiskLabel(l2, c) + '</span><span class="rc-value">R=' + rEmpty + '</span></div>';
                 }
             }
         }
@@ -3890,7 +3921,7 @@ body {
         var scenicProfileBtn = $('scenicProfileBtn');
         if (scenicProfileBtn) scenicProfileBtn.addEventListener('click', function () {
             var profile = profileNames[p.cluster] || profileNames[b.mode] || 'culture';
-            window.location.href = 'http://127.0.0.1:5178/sc-datav/#/demo1?profile=' + encodeURIComponent(profile);
+            window.location.href = './sc-datav/sc-datav/dist/#/demo1?profile=' + encodeURIComponent(profile);
         });
         var speakBtn = $('speakRecommendBtn');
         if (speakBtn) speakBtn.addEventListener('click', function () {
@@ -4492,7 +4523,7 @@ body {
             if (el) el.addEventListener('click', function () { showPage(cardMap[id]); });
         });
         $('homeCardDigitalSandbox').addEventListener('click', function () {
-            window.location.href = 'http://127.0.0.1:5178/sc-datav/';
+            window.location.href = './sc-datav/sc-datav/dist/';
         });
 
         // 轮播

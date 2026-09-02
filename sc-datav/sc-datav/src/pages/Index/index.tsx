@@ -29,25 +29,25 @@ const CAROUSEL_ITEMS = [
   {
     id: "city-brain-primary",
     title: "河北省智慧城市数据大脑",
-    url: "/sc-datav/demo_1_hebei.png?v=2",
+    url: "./demo_1_hebei.png?v=2",
     path: "/demo1",
   },
   {
     id: "smart-tourism-primary",
     title: "河北智慧文旅全景平台",
-    url: "/sc-datav/demo_2_hebei.png?v=3",
+    url: "./demo_2_hebei.png?v=3",
     path: "/demo2",
   },
   {
     id: "city-brain-secondary",
     title: "河北省智慧城市数据大脑",
-    url: "/sc-datav/demo_1_hebei.png?v=2",
+    url: "./demo_1_hebei.png?v=2",
     path: "/demo3",
   },
   {
     id: "smart-tourism-secondary",
     title: "河北智慧文旅全景平台",
-    url: "/sc-datav/demo_2_hebei.png?v=3",
+    url: "./demo_2_hebei.png?v=3",
     path: "/demo4",
   },
 ];
