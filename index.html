@@ -426,31 +426,37 @@ body.auth-mode:before { content:""; position:fixed; inset:0; z-index:0; backgrou
 body.auth-mode .app-layout { position:relative; z-index:1; min-height:100vh; }
 body.auth-mode .main-content { margin-left:0; width:100%; max-width:none; min-height:100vh; box-sizing:border-box; padding:34px 5vw 58px; display:flex; align-items:center; justify-content:center; }
 body.auth-mode .sidebar, body.auth-mode .sidebar-toggle { display:none !important; }
-body.auth-mode #authPage { width:100%; max-width:520px; }
-body.auth-mode #authPage .auth-shell { display:block; min-height:0; overflow:hidden; border-radius:20px; background:#fffdf8; box-shadow:0 24px 80px rgba(5,31,20,.34); }
-body.auth-mode #authPage .auth-panel { box-sizing:border-box; padding:42px 52px 32px; background:#fffdf8; }
-body.auth-mode #authPage .auth-logo { width:56px; height:56px; display:grid; place-items:center; border-radius:50%; color:#fff; background:#1d4935; border:3px solid #c7a96b; font-family:var(--font-serif); font-size:21px; margin-bottom:18px; }
+body.auth-mode #authPage { width:100%; max-width:1040px; }
+body.auth-mode #authPage .auth-shell { display:grid; grid-template-columns:minmax(330px,.92fr) minmax(430px,1.08fr); min-height:610px; overflow:hidden; border-radius:22px; background:#fffdf8; box-shadow:0 24px 80px rgba(5,31,20,.36); }
+body.auth-mode #authPage .auth-intro { box-sizing:border-box; padding:56px 48px 44px; color:#f6f2e8; background:linear-gradient(145deg,#1d4935,#2f7650); display:flex; flex-direction:column; }
+body.auth-mode #authPage .auth-intro-mark { width:62px; height:62px; display:grid; place-items:center; border-radius:50%; color:#fff; background:#163b2b; border:3px solid #d1b276; font-family:var(--font-serif); font-size:22px; margin-bottom:26px; }
+body.auth-mode #authPage .auth-intro-kicker { color:#e1c487; font-family:Arial,sans-serif; font-size:10px; letter-spacing:2px; }
+body.auth-mode #authPage .auth-intro h1 { margin:16px 0 10px; color:#fffdf8; font-family:var(--font-serif); font-size:34px; line-height:1.45; }
+body.auth-mode #authPage .auth-intro-name { margin:0; color:rgba(255,253,248,.82); font-size:14px; line-height:1.85; }
+body.auth-mode #authPage .auth-intro-rule { width:58px; margin:28px 0 24px; border-top:3px solid #d1b276; }
+body.auth-mode #authPage .auth-intro-copy { margin:0 0 22px; color:rgba(255,253,248,.86); font-size:14px; line-height:1.9; }
+body.auth-mode #authPage .auth-intro-list { display:grid; gap:15px; margin:0; padding:0; list-style:none; }
+body.auth-mode #authPage .auth-intro-list li { display:flex; gap:11px; align-items:flex-start; color:#fffdf8; font-size:13px; line-height:1.7; }
+body.auth-mode #authPage .auth-intro-list li:before { content:"✓"; flex:0 0 20px; width:20px; height:20px; display:grid; place-items:center; border-radius:50%; color:#1d4935; background:#d1b276; font-size:12px; font-weight:bold; }
+body.auth-mode #authPage .auth-intro-footer { margin-top:auto; padding-top:28px; color:rgba(255,253,248,.64); font-size:11px; letter-spacing:1px; }
+body.auth-mode #authPage .auth-panel { box-sizing:border-box; padding:56px 58px 42px; background:#fffdf8; }
+body.auth-mode #authPage .auth-panel-head { margin-bottom:26px; }
 body.auth-mode #authPage .auth-panel-kicker { color:#9a7b3e; font-family:Arial,sans-serif; font-size:10px; letter-spacing:2px; }
-body.auth-mode #authPage .auth-panel h1 { margin:12px 0 7px; color:#1d4935; font-family:var(--font-serif); font-size:27px; line-height:1.35; }
-body.auth-mode #authPage .auth-system-name { margin:0; color:#778477; font-size:13px; line-height:1.7; }
-body.auth-mode #authPage .auth-panel-rule { width:58px; margin:22px 0 24px; border-top:3px solid #c7a96b; }
-body.auth-mode #authPage .auth-panel-head { margin-bottom:22px; }
-body.auth-mode #authPage .auth-panel-head h2 { margin:0 0 7px; color:#1d4935; font-family:var(--font-serif); font-size:24px; }
-body.auth-mode #authPage .auth-panel-head p { margin:0; color:#8a968a; font-size:12px; }
-body.auth-mode #authPage .auth-form-grid { max-width:none; gap:14px; }
+body.auth-mode #authPage .auth-panel-head h2 { margin:14px 0 8px; color:#1d4935; font-family:var(--font-serif); font-size:27px; line-height:1.35; }
+body.auth-mode #authPage .auth-panel-head p { margin:0; color:#8a968a; font-size:13px; line-height:1.7; }
+body.auth-mode #authPage .auth-form-grid { max-width:none; gap:15px; }
 body.auth-mode #authPage .auth-form-grid label { gap:7px; color:#58705f; font-size:13px; }
-body.auth-mode #authPage .auth-form-grid input { box-sizing:border-box; width:100%; height:46px; padding:0 13px; border:1px solid #d8ded5; border-radius:6px; background:#fbfcf8; color:#294339; font-size:14px; }
+body.auth-mode #authPage .auth-form-grid input { box-sizing:border-box; width:100%; height:48px; padding:0 14px; border:1px solid #d8ded5; border-radius:6px; background:#fbfcf8; color:#294339; font-size:14px; }
 body.auth-mode #authPage .auth-form-grid input:focus { outline:none; border-color:#4f8b68; box-shadow:0 0 0 3px rgba(79,139,104,.14); }
-body.auth-mode #authPage .auth-actions { display:flex; gap:10px; margin-top:9px; }
-body.auth-mode #authPage .auth-actions button { min-height:44px; border-radius:6px; }
+body.auth-mode #authPage .auth-actions { display:flex; gap:10px; margin-top:10px; }
+body.auth-mode #authPage .auth-actions button { min-height:46px; border-radius:6px; }
 body.auth-mode #authPage .auth-actions .btn-primary { flex:1; background:#2f7650; border-color:#2f7650; }
 body.auth-mode #authPage .auth-actions .btn-primary:hover { background:#245e3f; border-color:#245e3f; }
-body.auth-mode #authPage .auth-switch { margin-top:7px; text-align:center; color:#2f7650; font-size:13px; cursor:pointer; }
-body.auth-mode #authPage .auth-note { margin-top:26px; padding-top:14px; border-top:1px solid #e4e8df; color:#98a295; font-size:11px; text-align:center; }
+body.auth-mode #authPage .auth-switch { margin-top:8px; text-align:center; color:#2f7650; font-size:13px; cursor:pointer; }
+body.auth-mode #authPage .auth-note { margin-top:30px; padding-top:15px; border-top:1px solid #e4e8df; color:#98a295; font-size:11px; text-align:center; }
 body.auth-mode .assistant-wrap { z-index:30; }
 body.auth-mode .chat-panel { z-index:31; }
-@media(max-width:800px){ body.auth-mode .main-content{padding:20px 14px 74px;} body.auth-mode #authPage .auth-panel{padding:32px 28px;} body.auth-mode #authPage .auth-panel h1{font-size:23px;} }
-/* ============ 首页轮播 ============ */
+@media(max-width:800px){ body.auth-mode .main-content{padding:20px 14px 74px;} body.auth-mode #authPage .auth-shell{grid-template-columns:1fr; min-height:0;} body.auth-mode #authPage .auth-intro{padding:32px 28px 28px; min-height:300px;} body.auth-mode #authPage .auth-intro h1{font-size:28px;} body.auth-mode #authPage .auth-intro-footer{margin-top:24px;} body.auth-mode #authPage .auth-panel{padding:34px 28px;} }/* ============ 首页轮播 ============ */
 .home-carousel {
     position: relative;
     z-index: 5;
@@ -2638,16 +2644,25 @@ body.auth-mode .chat-panel { z-index:31; }
             <!-- 详情页 -->
             <div id="authPage" class="page active">
                 <div class="auth-shell">
+                    <section class="auth-intro">
+                        <div class="auth-intro-mark">安途</div>
+                        <div class="auth-intro-kicker">AN-TU SMART CARE TRAVEL</div>
+                        <h1>安途智算<br>虚拟仿真系统</h1>
+                        <p class="auth-intro-name">老年康养旅游智能选择与安全评估平台</p>
+                        <div class="auth-intro-rule"></div>
+                        <p class="auth-intro-copy">面向银发人群的康养旅游安全决策平台，让每一次出行都更适合、更安心。</p>
+                        <ul class="auth-intro-list">
+                            <li>四类康养模式，匹配个人兴趣偏好</li>
+                            <li>风险矩阵量化安全隐患，给出防护建议</li>
+                            <li>综合计算生成清晰、可追溯的推荐结果</li>
+                        </ul>
+                        <div class="auth-intro-footer">更多功能等待后续更新</div>
+                    </section>
                     <section class="auth-panel">
-                        <div class="auth-logo">安途</div>
-                        <div class="auth-panel-kicker">AN-TU SMART CARE TRAVEL</div>
-                        <h1>安途智算虚拟仿真系统</h1>
-                        <p class="auth-system-name">老年康养旅游智能选择与安全评估平台</p>
-                        <div class="auth-panel-rule"></div>
-                        <div class="auth-panel-head"><h2 id="authTitle">登录安途智算</h2><p>登录后开启您的康养旅游智能决策</p></div>
+                        <div class="auth-panel-head"><div class="auth-panel-kicker">WELCOME TO AN-TU</div><h2 id="authTitle">登录安途智算</h2><p>登录后开启您的康养旅游智能决策</p></div>
                         <div class="auth-form-grid" id="loginForm"><label>账号或邮箱<input id="loginAccount" type="text" placeholder="请输入账号或邮箱"></label><label>密码<input id="loginPassword" type="password" placeholder="请输入密码"></label><div class="auth-actions"><button class="btn-primary" id="loginBtn">登录</button><button class="btn-secondary" id="consultFromAuth">在线咨询</button></div><div class="auth-switch" id="showRegister">没有账号？立即注册</div></div>
                         <div class="auth-form-grid" id="registerForm" style="display:none"><label>姓名<input id="registerName" type="text" placeholder="请输入姓名"></label><label>手机号<input id="registerPhone" type="tel" placeholder="请输入手机号"></label><label>邮箱<input id="registerEmail" type="email" placeholder="请输入邮箱"></label><label>设置密码<input id="registerPassword" type="password" placeholder="请输入密码"></label><label>确认密码<input id="registerConfirm" type="password" placeholder="请输入密码"></label><div class="auth-actions"><button class="btn-primary" id="registerBtn">注册并登录</button><button class="btn-secondary" id="showLoginFromRegister">返回登录</button></div><div class="auth-switch" id="showLogin">已有账号？返回登录</div></div>
-                        <div class="auth-note">更多功能等待后续更新</div>
+                        <div class="auth-note">登录注册仅用于进入系统演示</div>
                     </section>
                 </div>
             </div>            <div id="userCenterPage" class="page">
