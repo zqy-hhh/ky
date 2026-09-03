@@ -394,109 +394,90 @@ body {
 
 .back-btn:hover { background: #f3efe4; }
 
+/* 登录页为独立入口，不显示系统侧栏 */
+body.auth-mode .sidebar { display: none; }
+body.auth-mode .main-content { margin-left: 0; width: 100%; max-width: none; }
+body.auth-mode .sidebar-toggle { display: none; }
+body.auth-mode .page-header, body.auth-mode .content-card { max-width: 980px; margin-left: auto; margin-right: auto; }
+body.auth-mode .content-card { margin-top: 18px; }
+/* 独立登录入口视觉 */
+body.auth-mode { background: linear-gradient(135deg, #173b2b 0%, #2f684f 46%, #edf1e8 46%, #f7f5ef 100%); }
+body.auth-mode .main-content { min-height: 100vh; display:flex; align-items:center; justify-content:center; padding:44px 7vw; }
+body.auth-mode #authPage { width:100%; max-width:1120px; }
+body.auth-mode #authPage .page-header { max-width:none; margin:0 0 24px; color:#fff; border:0; }
+body.auth-mode #authPage .page-title { color:#fff; font-size:34px; margin:0 0 8px; }
+body.auth-mode #authPage .page-subtitle { color:rgba(255,255,255,.84); }
+body.auth-mode #authPage .content-card { max-width:none; margin:0; padding:0; display:grid; grid-template-columns:minmax(260px,.85fr) minmax(360px,1.15fr); overflow:hidden; border:0; border-radius:18px; box-shadow:0 22px 60px rgba(10,35,23,.26); background:#fffdf8; }
+body.auth-mode #authPage .content-card:before { content:'安途智算\A 老年康养旅游智能选择与安全评估平台\A\A 科学评估兴趣匹配度\A 量化分析出行风险\A 给出有依据的康养推荐'; white-space:pre-line; display:flex; align-items:center; padding:48px; min-height:430px; color:#f7f3e9; font-family:var(--font-serif); font-size:22px; line-height:2.1; background:#1d4935; }
+body.auth-mode #authPage .research-section-title { margin:0; padding:42px 48px 18px; color:var(--green-900); border-left:0; font-size:25px; }
+body.auth-mode #authPage .auth-form-grid { padding:0 48px 42px; max-width:none; }
+body.auth-mode #authPage .auth-form-grid label { font-size:14px; color:var(--ink-soft); }
+body.auth-mode #authPage .auth-form-grid input { height:48px; border-radius:8px; background:#faf8f1; font-size:15px; }
+body.auth-mode #authPage .auth-actions { margin-top:20px; }
+body.auth-mode #authPage .auth-actions button { min-width:120px; height:46px; border-radius:7px; }
+body.auth-mode #authPage .auth-note { padding:0 48px 36px; }
+body.auth-mode #authPage .auth-switch { font-size:15px; }
+body.auth-mode .assistant-wrap { z-index:30; }
+body.auth-mode .chat-panel { z-index:31; }
+@media(max-width:760px){ body.auth-mode { background:#1d4935; } body.auth-mode .main-content { padding:28px 18px 90px; } body.auth-mode #authPage .page-title { font-size:28px; } body.auth-mode #authPage .content-card { grid-template-columns:1fr; } body.auth-mode #authPage .content-card:before { min-height:180px; padding:24px 28px; font-size:18px; line-height:1.65; } body.auth-mode #authPage .research-section-title, body.auth-mode #authPage .auth-form-grid { padding-left:28px; padding-right:28px; } body.auth-mode #authPage .auth-note { padding-left:28px; padding-right:28px; } }
+/* ============ 独立登录入口 ============ */
+body.auth-mode { min-height:100vh; background:#163b2b url("GIS/scenic/gallery/baoding-xidajie-1.jpeg") center/cover fixed no-repeat; }
+body.auth-mode:before { content:""; position:fixed; inset:0; z-index:0; background:linear-gradient(115deg, rgba(16,57,39,.88), rgba(31,91,62,.72) 48%, rgba(15,48,34,.82)); pointer-events:none; }
+body.auth-mode .app-layout { position:relative; z-index:1; min-height:100vh; }
+body.auth-mode .main-content { margin-left:0; width:100%; max-width:none; min-height:100vh; box-sizing:border-box; padding:34px 5vw 58px; display:flex; align-items:center; justify-content:center; }
+body.auth-mode .sidebar, body.auth-mode .sidebar-toggle { display:none !important; }
+body.auth-mode #authPage { width:100%; max-width:520px; }
+body.auth-mode #authPage .auth-shell { display:block; min-height:0; overflow:hidden; border-radius:20px; background:#fffdf8; box-shadow:0 24px 80px rgba(5,31,20,.34); }
+body.auth-mode #authPage .auth-panel { box-sizing:border-box; padding:42px 52px 32px; background:#fffdf8; }
+body.auth-mode #authPage .auth-logo { width:56px; height:56px; display:grid; place-items:center; border-radius:50%; color:#fff; background:#1d4935; border:3px solid #c7a96b; font-family:var(--font-serif); font-size:21px; margin-bottom:18px; }
+body.auth-mode #authPage .auth-panel-kicker { color:#9a7b3e; font-family:Arial,sans-serif; font-size:10px; letter-spacing:2px; }
+body.auth-mode #authPage .auth-panel h1 { margin:12px 0 7px; color:#1d4935; font-family:var(--font-serif); font-size:27px; line-height:1.35; }
+body.auth-mode #authPage .auth-system-name { margin:0; color:#778477; font-size:13px; line-height:1.7; }
+body.auth-mode #authPage .auth-panel-rule { width:58px; margin:22px 0 24px; border-top:3px solid #c7a96b; }
+body.auth-mode #authPage .auth-panel-head { margin-bottom:22px; }
+body.auth-mode #authPage .auth-panel-head h2 { margin:0 0 7px; color:#1d4935; font-family:var(--font-serif); font-size:24px; }
+body.auth-mode #authPage .auth-panel-head p { margin:0; color:#8a968a; font-size:12px; }
+body.auth-mode #authPage .auth-form-grid { max-width:none; gap:14px; }
+body.auth-mode #authPage .auth-form-grid label { gap:7px; color:#58705f; font-size:13px; }
+body.auth-mode #authPage .auth-form-grid input { box-sizing:border-box; width:100%; height:46px; padding:0 13px; border:1px solid #d8ded5; border-radius:6px; background:#fbfcf8; color:#294339; font-size:14px; }
+body.auth-mode #authPage .auth-form-grid input:focus { outline:none; border-color:#4f8b68; box-shadow:0 0 0 3px rgba(79,139,104,.14); }
+body.auth-mode #authPage .auth-actions { display:flex; gap:10px; margin-top:9px; }
+body.auth-mode #authPage .auth-actions button { min-height:44px; border-radius:6px; }
+body.auth-mode #authPage .auth-actions .btn-primary { flex:1; background:#2f7650; border-color:#2f7650; }
+body.auth-mode #authPage .auth-actions .btn-primary:hover { background:#245e3f; border-color:#245e3f; }
+body.auth-mode #authPage .auth-switch { margin-top:7px; text-align:center; color:#2f7650; font-size:13px; cursor:pointer; }
+body.auth-mode #authPage .auth-note { margin-top:26px; padding-top:14px; border-top:1px solid #e4e8df; color:#98a295; font-size:11px; text-align:center; }
+body.auth-mode .assistant-wrap { z-index:30; }
+body.auth-mode .chat-panel { z-index:31; }
+@media(max-width:800px){ body.auth-mode .main-content{padding:20px 14px 74px;} body.auth-mode #authPage .auth-panel{padding:32px 28px;} body.auth-mode #authPage .auth-panel h1{font-size:23px;} }
 /* ============ 首页轮播 ============ */
 .home-carousel {
     position: relative;
     z-index: 5;
-    border-radius: var(--radius);
+    width: min(100%, 1120px);
+    height: 500px;
+    margin: 18px auto 28px;
+    border-radius: 26px;
     overflow: hidden;
-    margin-bottom: 22px;
-    margin-top: 10px;
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow);
-    background: #e9e4d6;
+    border: 1px solid rgba(31, 65, 45, .15);
+    box-shadow: 0 14px 34px rgba(31, 65, 45, .16);
+    background: #dfe5db;
 }
-
-.carousel-track {
-    display: flex;
-    transition: transform .55s ease;
-}
-
-.carousel-slide {
-    min-width: 100%;
-    height: 420px;
-    position: relative;
-    overflow: hidden;
-    background: #e9e4d6;
-}
-
-.carousel-slide-bg {
-    position: absolute;
-    inset: 0;
-    background-position: center;
-    background-size: cover;
-    filter: blur(18px);
-    transform: scale(1.08);
-    opacity: .42;
-    pointer-events: none;
-}
-
-.carousel-slide img {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-.carousel-caption {
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    padding: 26px 28px 18px;
-    background: linear-gradient(0deg, rgba(20, 32, 22, .88) 30%, rgba(20, 32, 22, 0) 100%);
-    color: #f4eedf;
-    z-index: 2;
-}
-
-.carousel-caption-title {
-    font-family: var(--font-serif);
-    font-size: 21px;
-    letter-spacing: 2px;
-}
-
-.carousel-caption-desc { font-size: 13px; color: #d5cfbe; margin-top: 4px; letter-spacing: 1px; }
-
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 42px; height: 42px;
-    background: rgba(30, 58, 41, .72);
-    color: #f2ecdd;
-    border: 1px solid rgba(255, 255, 255, .3);
-    border-radius: 50%;
-    font-size: 24px;
-    line-height: 1;
-    cursor: pointer;
-    z-index: 3;
-    transition: background .15s;
-}
-
-.carousel-btn:hover { background: rgba(30, 58, 41, .92); }
-.carousel-prev { left: 14px; }
-.carousel-next { right: 14px; }
-
-.carousel-dots {
-    position: absolute;
-    bottom: 10px;
-    right: 22px;
-    z-index: 4;
-    display: flex;
-    gap: 7px;
-}
-
-.carousel-dot {
-    width: 9px; height: 9px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, .45);
-    cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, .55);
-    transition: background .15s;
-}
-
-.carousel-dot.active { background: #d9b08c; }
-
+.carousel-track { display: flex; width: 100%; height: 100%; transition: transform .55s ease; }
+.carousel-slide { min-width: 100%; height: 100%; position: relative; overflow: hidden; background: #dfe5db; }
+.carousel-slide-bg { display: none; }
+.carousel-slide img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
+.carousel-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 86px 42px 42px; background: linear-gradient(0deg, rgba(15, 35, 23, .82), rgba(15, 35, 23, 0)); color: #fffdf6; z-index: 2; }
+.carousel-caption-title { font-family: var(--font-serif); font-size: 26px; letter-spacing: 2px; text-shadow: 0 1px 3px rgba(0,0,0,.35); }
+.carousel-caption-desc { font-size: 14px; color: #f0eadc; margin-top: 7px; letter-spacing: 1px; }
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 58px; height: 58px; background: rgba(255,255,255,.9); color: var(--green-800); border: 0; border-radius: 50%; font-size: 32px; line-height: 1; cursor: pointer; z-index: 3; box-shadow: 0 4px 14px rgba(0,0,0,.12); transition: background .15s, transform .15s; }
+.carousel-btn:hover { background: #fff; transform: translateY(-50%) scale(1.05); }
+.carousel-prev { left: 20px; }
+.carousel-next { right: 20px; }
+.carousel-dots { position: absolute; bottom: 20px; left: 50%; right: auto; transform: translateX(-50%); z-index: 4; display: flex; gap: 10px; }
+.carousel-dot { width: 12px; height: 12px; padding: 0; border-radius: 50%; background: rgba(255,255,255,.58); cursor: pointer; border: 1px solid rgba(255,255,255,.85); transition: background .15s, transform .15s; }
+.carousel-dot.active { background: #fff; transform: scale(1.18); }
+@media (max-width: 700px) { .home-carousel { width: 100%; height: 300px; border-radius: 16px; margin-top: 12px; } .carousel-caption { padding: 58px 22px 28px; } .carousel-caption-title { font-size: 19px; } .carousel-caption-desc { font-size: 12px; } .carousel-btn { width: 42px; height: 42px; font-size: 24px; } .carousel-prev { left: 12px; } .carousel-next { right: 12px; } .carousel-dots { bottom: 12px; } }
 /* ============ 首页功能卡片 ============ */
 .home-cards {
     display: grid;
@@ -653,6 +634,19 @@ body {
     margin-bottom: 10px;
 }
 
+.source-note {
+    margin: 10px 0 14px;
+    padding: 10px 12px;
+    background: #f8f5ec;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--green-700);
+    color: var(--ink-soft);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.source-note strong { color: var(--green-900); }
+.source-note a { color: var(--green-700); text-decoration: underline; text-underline-offset: 2px; }
 .research-section-title {
     font-family: var(--font-serif);
     font-size: 19px;
@@ -1217,7 +1211,7 @@ body {
 .qr-code-img {
     width: 178px;
     height: 178px;
-    object-fit: contain;
+    object-fit: cover;
     border: 1px solid var(--line);
     background: #fff;
 }
@@ -2116,10 +2110,20 @@ body {
     .risk-cell { min-height: 40px; font-size: 10px; }
 }
 
-</style>
+.auth-form-grid { display:grid; gap:12px; max-width:620px; }
+.auth-form-grid label { display:grid; gap:6px; color:var(--ink-soft); font-size:13px; }
+.auth-form-grid input, .profile-form input { padding:11px 12px; border:1px solid var(--line-strong); border-radius:4px; background:#fffdf6; color:var(--ink); }
+.auth-actions, .profile-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+.auth-note { margin-top:14px; color:var(--ink-faint); font-size:12px; line-height:1.7; }
+.auth-switch { margin-top:16px; color:var(--blue); cursor:pointer; text-decoration:underline; }
+.profile-layout { display:grid; grid-template-columns:180px 1fr; gap:24px; align-items:start; }
+.profile-avatar { width:150px; aspect-ratio:1; border-radius:50%; object-fit:cover; border:4px solid var(--line); background:#eee8d8; }
+.profile-form { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.profile-form label { display:grid; gap:6px; color:var(--ink-soft); font-size:13px; }
+@media(max-width:700px){ .profile-layout,.profile-form { grid-template-columns:1fr; } .profile-avatar { width:110px; } }</style>
 </head>
 
-<body>
+<body class="auth-mode">
     <!-- 在线客服悬浮按钮 -->
     <div class="assistant-wrap" id="aiAssistantWrapper">
         <div class="assistant-bubble" id="aiBubble">使用中遇到问题？点此咨询客服</div>
@@ -2185,15 +2189,15 @@ body {
                 <a class="nav-item" id="navInterestScore" data-page="interestScorePage"><span class="nav-marker"></span><span>兴趣打分表</span></a>
                 <a class="nav-item" id="navSafetyAnalysis" data-page="safetyAnalysisPage"><span class="nav-marker"></span><span>安全旅游分析</span></a>
                 <a class="nav-item" id="navGroupPage" data-page="groupPage"><span class="nav-marker"></span><span>旅游组群</span></a>
-                <a class="nav-item" id="navDigitalSandbox" href="./sc-datav/sc-datav/dist/"><span class="nav-marker"></span><span>数字沙盘</span></a>
+                <a class="nav-item" id="navDigitalSandbox" href="./sc-datav/sc-datav/dist/index.html"><span class="nav-marker"></span><span>数字沙盘</span></a>
                 <div class="nav-section-title">数据分析</div>
                 <a class="nav-item" id="navDataSelect" data-page="dataSelectPage"><span class="nav-marker"></span><span>数据化选择</span></a>
                 <a class="nav-item" id="navVisual" data-page="visualPage"><span class="nav-marker"></span><span>可视化分析</span></a>
-                <div class="nav-section-title">用户服务</div>
+                <div class="nav-section-title">用户服务</div><a class="nav-item" id="navUserCenter" data-page="userCenterPage"><span class="nav-marker"></span><span>个人中心</span></a>
                 <a class="nav-item" id="navFeedbackPage" data-page="feedbackPage"><span class="nav-marker"></span><span>反馈与建议</span></a>
             </nav>
             <div class="sidebar-footer">
-                <div class="sidebar-version">v3.0 · HTML / CSS / JavaScript / Python</div>
+                <div class="sidebar-version">v3.0</div>
             </div>
         </aside>
 
@@ -2202,7 +2206,7 @@ body {
         <!-- 主内容区域 -->
         <main class="main-content">
             <!-- 系统首页 -->
-            <div id="homePage" class="page active">
+            <div id="homePage" class="page">
                 <div class="masthead">
                     <h1 class="masthead-title">安途智算虚拟仿真系统</h1>
                     <p class="masthead-sub">健康养生旅游模式可视化选择系统 —— 用户画像 · 风险矩阵 · 综合推荐</p>
@@ -2271,7 +2275,7 @@ body {
                         <div class="home-card-index">07</div>
                         <div class="home-card-body">
                             <div class="home-card-title">数据化选择</div>
-                            <div class="home-card-desc">K均值画像 · 余弦匹配 · 三要素综合推荐</div>
+                            <div class="home-card-desc">K均值画像 · 余弦匹配 · 三项综合推荐</div>
                         </div>
                         <div class="home-card-arrow">›</div>
                     </div>
@@ -2503,14 +2507,16 @@ body {
                         <div class="param-group"><label>医疗兴趣</label><input type="number" id="medicalInput" value="5" min="0" max="10" step="0.1" placeholder="0-10"><span class="score-hint">满分10分</span></div>
                         <div class="param-group"><label>消费预测</label><input type="number" id="consumptionInput" value="5" min="0" max="10" step="0.1" placeholder="0-10"><span class="score-hint">满分10分</span></div>
                     </div>
+                    <div id="objectiveProfileLivePanel" class="live-panel">填写四项兴趣后，系统将自动计算您对四类画像的客观匹配分（0-10分）。</div>
+                    <div class="source-note"><strong>数据来源：</strong>四画像客观匹配分 P=10×余弦相似度；平台特征向量为文化[9,1,0,2]、生态[2,8,1,1]、休闲[1,2,9,1]、医疗[1,1,1,9]，具体向量为本平台规则定义；维度设置参考文化和旅游部官网（https://www.mct.gov.cn/）和国务院办公厅《关于发展银发经济增进老年人福祉的意见》（https://www.gov.cn/zhengce/content/202401/content_6926080.htm）。输入值采用本平台0-10分兴趣量表，P是平台计算结果，不是外部统计值。</div>
                 </div>
 
                 <!-- 贰：主观安全自评 -->
                 <div class="step-card">
                     <div class="step-head">
                         <span class="step-num">贰</span>
-                        <span class="step-title">主观安全自评</span>
-                        <span class="step-note">0 = 完全不害怕 · 10 = 极度害怕（10分制）</span>
+                        <span class="step-title">安全认知评分（主观安全自评）</span>
+                        <span class="step-note">先填害怕度：0 = 不害怕 · 10 = 极度害怕，系统换算安全认知分 A</span>
                     </div>
                     <div class="safety-eval-input-grid" id="safetyEvalInputGrid">
                         <div class="safety-eval-input-item" data-mode="0">
@@ -2566,7 +2572,7 @@ body {
                             </div>
                         </div>
                     </div>
-                    <div id="dataSafetyLivePanel" class="live-panel">拖动上方滑块，各模式主观安全度将在此实时更新…</div>
+                    <div id="dataSafetyLivePanel" class="live-panel">拖动上方滑块，各模式安全认知分将在此实时更新。</div>
                     <div class="action-bar">
                         <button class="btn-return-chart" id="resetSafetyEvalInputBtn">重置安全自评</button>
                     </div>
@@ -2577,7 +2583,7 @@ body {
                     <div class="step-head">
                         <span class="step-num">叁</span>
                         <span class="step-title">客观风险矩阵</span>
-                        <span class="step-note">系统内置16类风险评估</span>
+                        <span class="step-note">系统内置16类风险评估，换算为客观安全分 G</span>
                     </div>
                     <div id="riskMatrixPreview"></div>
                 </div>
@@ -2587,7 +2593,7 @@ body {
                     <div class="step-head">
                         <span class="step-num">肆</span>
                         <span class="step-title">综合计算与推荐</span>
-                        <span class="step-note">Score = ⅓·S + ⅓·F + ⅓·G（三项同等重要）</span>
+                        <span class="step-note">Score = ⅓·P + ⅓·A + ⅓·G（三项同等重要）</span>
                     </div>
                     <div class="action-bar">
                         <button class="btn-primary" id="quickCalcBtn">开始综合计算</button>
@@ -2630,7 +2636,24 @@ body {
             </div>
 
             <!-- 详情页 -->
-            <div id="detailPage" class="page">
+            <div id="authPage" class="page active">
+                <div class="auth-shell">
+                    <section class="auth-panel">
+                        <div class="auth-logo">安途</div>
+                        <div class="auth-panel-kicker">AN-TU SMART CARE TRAVEL</div>
+                        <h1>安途智算虚拟仿真系统</h1>
+                        <p class="auth-system-name">老年康养旅游智能选择与安全评估平台</p>
+                        <div class="auth-panel-rule"></div>
+                        <div class="auth-panel-head"><h2 id="authTitle">登录安途智算</h2><p>登录后开启您的康养旅游智能决策</p></div>
+                        <div class="auth-form-grid" id="loginForm"><label>账号或邮箱<input id="loginAccount" type="text" placeholder="请输入账号或邮箱"></label><label>密码<input id="loginPassword" type="password" placeholder="请输入密码"></label><div class="auth-actions"><button class="btn-primary" id="loginBtn">登录</button><button class="btn-secondary" id="consultFromAuth">在线咨询</button></div><div class="auth-switch" id="showRegister">没有账号？立即注册</div></div>
+                        <div class="auth-form-grid" id="registerForm" style="display:none"><label>姓名<input id="registerName" type="text" placeholder="请输入姓名"></label><label>手机号<input id="registerPhone" type="tel" placeholder="请输入手机号"></label><label>邮箱<input id="registerEmail" type="email" placeholder="请输入邮箱"></label><label>设置密码<input id="registerPassword" type="password" placeholder="请输入密码"></label><label>确认密码<input id="registerConfirm" type="password" placeholder="请输入密码"></label><div class="auth-actions"><button class="btn-primary" id="registerBtn">注册并登录</button><button class="btn-secondary" id="showLoginFromRegister">返回登录</button></div><div class="auth-switch" id="showLogin">已有账号？返回登录</div></div>
+                        <div class="auth-note">更多功能等待后续更新</div>
+                    </section>
+                </div>
+            </div>            <div id="userCenterPage" class="page">
+                <div class="page-header"><h1 class="page-title">个人用户中心</h1><p class="page-subtitle">管理您的展示资料和登录信息</p></div>
+                <div class="content-card"><div class="profile-layout"><div><img class="profile-avatar" id="profileAvatar" alt="用户头像"><label class="btn-secondary" style="display:inline-block;margin-top:12px;cursor:pointer">上传头像<input id="profileAvatarInput" type="file" accept="image/*" style="display:none"></label></div><div><div class="profile-form"><label>姓名<input id="profileName" type="text"></label><label>手机号<input id="profilePhone" type="tel"></label><label>邮箱<input id="profileEmail" type="email"></label><label>账号<input id="profileAccount" type="text" disabled></label></div><div class="profile-actions"><button class="btn-primary" id="saveProfileBtn">保存资料</button><button class="btn-secondary" id="logoutBtn">退出登录</button></div><div class="research-section-title" style="margin-top:24px">修改密码</div><div class="profile-form"><label>原密码<input id="oldPassword" type="password"></label><label>新密码<input id="newPassword" type="password"></label><label>确认新密码<input id="confirmPassword" type="password"></label></div><div class="profile-actions"><button class="btn-accent" id="changePasswordBtn">修改密码</button></div></div></div></div>
+            </div>            <div id="detailPage" class="page">
                 <div class="page-header">
                     <div class="breadcrumb" id="breadcrumb"></div>
                 </div>
@@ -2660,7 +2683,7 @@ body {
    语言构成：HTML + CSS + JavaScript（本文件）+ Python（analysis.py / app.py）
    计算策略：优先调用 Python 后端 /api/analyze，失败时自动降级为
    本文件内置的同算法 JavaScript 引擎（K均值聚类 / 余弦相似度 /
-   风险矩阵 / 三要素等权综合推荐），两套引擎结果完全一致。
+   风险矩阵 / 三项等权综合推荐），两套引擎结果完全一致。
    ============================================================ */
 
 (function () {
@@ -3073,6 +3096,7 @@ body {
             r_list: rList,
             avgR: avg,
             G: 1 - avg / 25,
+            G10: 10 * (1 - avg / 25),
             level: riskLevelOf(Math.floor(avg))
         };
     }
@@ -3085,7 +3109,7 @@ body {
         return "E";
     }
 
-    // 三要素等权综合推荐：Score_i = 1/3·S_i + 1/3·F_i + 1/3·G_i
+    // 三项统一为0-10分后等权综合推荐：Score_i = 1/3·P_i + 1/3·A_i + 1/3·G_i
     function computeRecommendationJS(interests, fears, consumption) {
         var userVec = interests.slice(0, 4).map(Number);
         var fArr = fears.slice(0, 4).map(Number);
@@ -3098,14 +3122,17 @@ body {
 
         var parts = [];
         for (var i = 0; i < 4; i++) {
-            var s = sims[i];
-            var f = 1 - Math.min(Math.max(fArr[i], 0), 10) / 10;
+            var sim = sims[i];
+            var p = 10 * sim;
+            var fear = Math.min(Math.max(fArr[i], 0), 10);
+            var a = 10 - fear;
             var rs = modeRiskSummary(i);
-            var g = rs.G;
+            var g = 10 * rs.G;
             parts.push({
                 mode: i, name: modeNames[i],
-                S: s, F: f, G: g,
-                score: (s + f + g) / 3,
+                P: p, A: a, G: g,
+                S: sim, F: a / 10, G01: rs.G,
+                score: (p + a + g) / 3,
                 avgR: rs.avgR, level: rs.level
             });
         }
@@ -3121,6 +3148,24 @@ body {
             tier: consumptionTier(cons),
             tier_name: tierNames[consumptionTier(cons)]
         };
+    }
+
+    // 兼容旧版Python返回值：旧接口的S/F/G为0-1分，统一转换成新三项0-10分。
+    function normalizeRecommendationResult(data) {
+        if (!data || !data.ranking) return data;
+        data.ranking.forEach(function (part) {
+            if (part.P === undefined) part.P = 10 * Number(part.S || 0);
+            if (part.A === undefined) part.A = 10 * Number(part.F || 0);
+            if (part.G10 === undefined) { var rawG = Number(part.G || 0); part.G10 = rawG <= 1 ? rawG * 10 : rawG; }
+            part.score = (part.P + part.A + part.G10) / 3;
+            if (part.S === undefined) part.S = part.P / 10;
+            if (part.F === undefined) part.F = part.A / 10;
+            if (part.G01 === undefined) part.G01 = part.G10 / 10;
+            part.G = part.G10;
+        });
+        data.ranking.sort(function (a, b) { return b.score - a.score; });
+        data.best = data.ranking[0];
+        return data;
     }
 
     /* ==================== 三、Python 后端桥接 ==================== */
@@ -3154,10 +3199,12 @@ body {
         homePage: 'navHome', researchPage: 'navResearch', healthStylePage: 'navHealthStyle',
         interestScorePage: 'navInterestScore', safetyAnalysisPage: 'navSafetyAnalysis',
         groupPage: 'navGroupPage', dataSelectPage: 'navDataSelect',
-        visualPage: 'navVisual', feedbackPage: 'navFeedbackPage'
+        visualPage: 'navVisual', feedbackPage: 'navFeedbackPage', authPage: 'navAuth', userCenterPage: 'navUserCenter'
     };
 
     function showPage(pageId) {
+        if (pageId !== 'authPage' && sessionStorage.getItem('demoLoggedIn') !== '1') { pageId = 'authPage'; }
+        document.body.classList.toggle('auth-mode', pageId === 'authPage');
         document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('active'); });
         var page = $(pageId);
         if (!page) return;
@@ -3190,7 +3237,7 @@ body {
             homePage: '系统首页', researchPage: '背景与模式', healthStylePage: '养生方式',
             interestScorePage: '兴趣打分表', safetyAnalysisPage: '安全旅游分析',
             groupPage: '旅游组群', dataSelectPage: '数据化选择', visualPage: '可视化分析',
-            feedbackPage: '反馈与建议'
+            feedbackPage: '反馈与建议', authPage: '登录 / 注册', userCenterPage: '个人用户中心'
         };
         return map[pageId] || '系统首页';
     }
@@ -3316,7 +3363,7 @@ body {
     function renderRiskMatrixIntro() {
         var html =
             '<div class="research-section-title">四、风险矩阵 —— 数据安全分析工具</div>' +
-            '<p class="research-intro">风险矩阵（Risk Matrix）是一种国际上广泛使用的风险评估工具。它将每类风险从两个维度进行量化：<strong>可能性 L</strong>（风险发生的概率，1-5分）与<strong>后果严重度 C</strong>（风险发生后的影响程度，1-5分），再综合评定风险等级（取值范围1-25）。根据风险值所在区间，将风险划分为四个等级，并采取不同强度的处置措施。</p>' +
+            '<p class="research-intro">风险矩阵（Risk Matrix）是一种国际上广泛使用的风险评估工具。它将每类风险从两个维度进行量化：<strong>可能性 L</strong>（风险发生的概率，1-5分）与<strong>后果严重度 C</strong>（风险发生后的影响程度，1-5分），再综合评定风险等级（取值范围1-25）。根据风险值所在区间，将风险划分为四个等级，并采取不同强度的处置措施。</p>' + sourceNoteHtml(dataSourceNotes.riskMatrix + " " + dataSourceNotes.travelSafety) +
             '<table class="matrix-method-table">' +
             '<tr><th>风险等级</th><th>风险值 R</th><th>颜色标识</th><th>处置原则</th></tr>' +
             '<tr><td>低风险</td><td>1 - 4</td><td><span class="zone-badge zone-low">绿色</span></td><td>常规管理，保持关注</td></tr>' +
@@ -3325,7 +3372,7 @@ body {
             '<tr><td>极高风险</td><td>16 - 25</td><td><span class="zone-badge zone-extreme">红色</span></td><td>立即整改，必要时取消行程</td></tr>' +
             '</table>' +
             '<p class="research-intro">本平台将风险矩阵应用于四种康养旅游模式的安全分析：为每类风险评定 L 值与 C 值，计算风险值并划分等级，进而得到各模式的客观安全度（R̄ 为该模式平均风险值）。该客观安全度与用户主观安全自评、兴趣匹配度一起，构成数据化选择的三大核心要素。</p>' +
-            '<p class="research-intro">四种模式的风险矩阵量化结果如下：文化+模式平均风险值 R̄=9.5（中），生态+模式 R̄=14.0（高），休闲+模式 R̄=9.5（中），医疗+模式 R̄=11.0（高）。对应的客观安全度 G 分别为 0.62、0.44、0.62、0.56。</p>';
+            '<p class="research-intro">四种模式的风险矩阵量化结果如下：文化+模式平均风险值 R̄=9.5（中），生态+模式 R̄=14.0（高），休闲+模式 R̄=9.5（中），医疗+模式 R̄=11.0（高）。按0-10分换算的风险矩阵安全分 G 分别为 6.2、4.4、6.2、5.6。</p>' + sourceNoteHtml(dataSourceNotes.objectiveSafety);
         $('riskMatrixIntroContent').innerHTML = html;
     }
 
@@ -3418,19 +3465,38 @@ body {
         handleAIQuery(msg, false);
     }
 
+    var dataSourceNotes = {
+        scoreScale: "兴趣、主观害怕度与消费预测均采用平台问卷量表：0-10分制，0表示最低，10表示最高；分档规则由本平台根据A-E五档康养旅游产品价格带设定。",
+        riskMatrix: "风险矩阵方法参考 ISO 31000《风险管理 指南》、ISO/IEC 31010《风险评估技术》中的可能性-后果矩阵思想；L、C采用1-5级平台量表，R=L×C，风险等级阈值由本平台按25格矩阵颜色分区设定。",
+        travelSafety: "风险类别与防护措施参考文化和旅游部旅游安全提示、应急管理部门公共安全与风险防控要求，并结合老年旅游出行场景整理。",
+        algorithm: "K均值聚类与余弦相似度为常用数据挖掘/向量相似度方法；本平台先将画像匹配、个人安全认知和风险矩阵安全度统一换算为0-10分，再按 Score=1/3*P+1/3*A+1/3*G 等权计算。",
+        officialLinks: "官方/标准来源：<a href=\"https://www.iso.org/iso-31000-risk-management.html\" target=\"_blank\" rel=\"noopener noreferrer\">ISO 31000 风险管理指南</a>；<a href=\"https://www.iso.org/standard/72140.html\" target=\"_blank\" rel=\"noopener noreferrer\">ISO/IEC 31010 风险评估技术</a>；<a href=\"https://www.mct.gov.cn/\" target=\"_blank\" rel=\"noopener noreferrer\">文化和旅游部官网</a>；<a href=\"https://www.gov.cn/zhengce/content/202401/content_6926080.htm\" target=\"_blank\" rel=\"noopener noreferrer\">国务院办公厅《关于发展银发经济增进老年人福祉的意见》</a>。",
+        riskQuantitative: "L、C不是外部事故发生率，而是本平台风险评估表的人工分级值：L=1-5、C=1-5；R=L×C。分级方法依据<a href='https://www.iso.org/iso-31000-risk-management.html' target='_blank' rel='noopener noreferrer'>ISO官网 ISO 31000《风险管理 指南》</a>和<a href='https://www.iso.org/standard/72140.html' target='_blank' rel='noopener noreferrer'>ISO官网 ISO/IEC 31010《风险评估技术》</a>；风险场景依据<a href='https://www.mct.gov.cn/' target='_blank' rel='noopener noreferrer'>文化和旅游部官网旅游安全提示</a>及<a href='https://www.gov.cn/zhengce/content/202401/content_6926080.htm' target='_blank' rel='noopener noreferrer'>国务院办公厅《关于发展银发经济增进老年人福祉的意见》</a>整理。",
+        riskQuantitativePlain: "平台风险评估表人工分级值：L=1-5、C=1-5、R=L×C；方法依据 ISO官网 ISO 31000《风险管理 指南》和 ISO官网 ISO/IEC 31010《风险评估技术》；场景依据文化和旅游部官网旅游安全提示及国务院办公厅《关于发展银发经济增进老年人福祉的意见》。",
+        subjectiveSafety: "安全认知分 A=10-害怕度；害怕度为用户在本平台0-10分问卷中的自评值，A为本平台归一化规则，不是外部统计值。",
+        objectiveSafety: "G=10×(1-R̄/25)；R̄为本平台该模式4类风险R值的算术平均，G为统一到0-10分的风险矩阵客观安全分。",
+        profileObjective: "P=10*S；S为老年人四维兴趣向量与对应康养模式画像特征向量的余弦相似度。平台特征向量为：文化[9,1,0,2]、生态[2,8,1,1]、休闲[1,2,9,1]、医疗[1,1,1,9]；P为统一到0-10分的客观画像匹配分。四维设置参考文化和旅游部官网（https://www.mct.gov.cn/）旅游类型与安全提示、国务院办公厅《关于发展银发经济增进老年人福祉的意见》（https://www.gov.cn/zhengce/content/202401/content_6926080.htm）；具体向量是本平台规则定义，不是外部统计数据。",
+        safetyCognition: "A=10-害怕度；害怕度为老年人对每种模式的0-10分安全认知自评，A为统一到0-10分的安全认知分。",
+        recommendation: "综合计算先将三项分数统一到0-10分：P=10*S，A=10-害怕度，G=10*(1-平均风险/25)；最终 Score=(P+A+G)/3，为本平台三项等权推荐规则。"
+    };
+
+    function sourceNoteHtml(text) {
+        return '<div class="source-note"><strong>数据来源：</strong>' + text + '</div>';
+    }
     /* ==================== 九、兴趣打分表页 ==================== */
 
     function renderInterestScorePage() {
         var html =
             '<div class="research-section-title">一、兴趣类型 10 分制打分标准</div>' +
             '<p class="research-intro">请根据您的实际情况，对以下五种兴趣类型进行打分（0-10分，0分表示完全没有兴趣，10分表示兴趣非常浓厚）。打分结果将作为"数据化选择"页面的输入参数，用于计算您与四种康养模式的匹配度。</p>' +
+            sourceNoteHtml(dataSourceNotes.scoreScale) +
             '<table class="score-table">' +
-            '<tr><th style="width:14%">兴趣类型</th><th style="width:12%">打分范围</th><th>打分参考标准</th></tr>' +
-            '<tr><td><strong>文化兴趣</strong></td><td>0 - 10 分</td><td class="score-desc">8-10分：非常喜爱历史古迹、博物馆、非遗文化，常主动参加文化活动；5-7分：对传统文化有一定兴趣，愿意在旅行中顺带参观；0-4分：对文化活动兴趣不大，更倾向于自然或休闲活动。</td></tr>' +
-            '<tr><td><strong>生态兴趣</strong></td><td>0 - 10 分</td><td class="score-desc">8-10分：热爱大自然，喜欢森林、湿地、海滨等生态景观，愿意徒步探索；5-7分：喜欢自然风光，但以轻度观光为主；0-4分：对野外环境兴趣不大或担心体力不足。</td></tr>' +
-            '<tr><td><strong>休闲兴趣</strong></td><td>0 - 10 分</td><td class="score-desc">8-10分：喜欢温泉、美食、度假酒店等轻松休闲方式；5-7分：偶尔度假放松，注重舒适但不追求奢华；0-4分：对休闲度假兴趣一般。</td></tr>' +
-            '<tr><td><strong>医疗兴趣</strong></td><td>0 - 10 分</td><td class="score-desc">8-10分：关注健康管理，有体检、理疗、康复等需求，愿意体验中医养生；5-7分：对养生保健有兴趣，但无明确医疗需求；0-4分：身体健康状况良好，暂不需要医疗康养服务。</td></tr>' +
-            '<tr><td><strong>消费预测</strong></td><td>0 - 10 分</td><td class="score-desc">根据您的消费意愿与预算打分：0-2分对应A档经济型，2-4分对应B档舒适型，4-6分对应C档品质型，6-8分对应D档高端型，8-10分对应E档奢华型。</td></tr>' +
+            '<tr><th style="width:14%">兴趣类型</th><th style="width:12%">打分范围</th><th>打分参考标准</th><th style="width:24%">定量来源</th></tr>' +
+            '<tr><td><strong>文化兴趣</strong></td><td>0 - 10 分</td><td class="score-desc">8-10分：非常喜爱历史古迹、博物馆、非遗文化，常主动参加文化活动；5-7分：对传统文化有一定兴趣，愿意在旅行中顺带参观；0-4分：对文化活动兴趣不大，更倾向于自然或休闲活动。</td><td class="score-desc">平台 0-10 分兴趣量表；题项依据文化旅游偏好维度整理。</td></tr>' +
+            '<tr><td><strong>生态兴趣</strong></td><td>0 - 10 分</td><td class="score-desc">8-10分：热爱大自然，喜欢森林、湿地、海滨等生态景观，愿意徒步探索；5-7分：喜欢自然风光，但以轻度观光为主；0-4分：对野外环境兴趣不大或担心体力不足。</td><td class="score-desc">平台 0-10 分兴趣量表；题项依据生态观光偏好维度整理。</td></tr>' +
+            '<tr><td><strong>休闲兴趣</strong></td><td>0 - 10 分</td><td class="score-desc">8-10分：喜欢温泉、美食、度假酒店等轻松休闲方式；5-7分：偶尔度假放松，注重舒适但不追求奢华；0-4分：对休闲度假兴趣一般。</td><td class="score-desc">平台 0-10 分兴趣量表；题项依据度假休闲偏好维度整理。</td></tr>' +
+            '<tr><td><strong>医疗兴趣</strong></td><td>0 - 10 分</td><td class="score-desc">8-10分：关注健康管理，有体检、理疗、康复等需求，愿意体验中医养生；5-7分：对养生保健有兴趣，但无明确医疗需求；0-4分：身体健康状况良好，暂不需要医疗康养服务。</td><td class="score-desc">平台 0-10 分兴趣量表；题项依据健康管理与医养需求整理。</td></tr>' +
+            '<tr><td><strong>消费预测</strong></td><td>0 - 10 分</td><td class="score-desc">根据您的消费意愿与预算打分：0-2分对应A档经济型，2-4分对应B档舒适型，4-6分对应C档品质型，6-8分对应D档高端型，8-10分对应E档奢华型。</td><td class="score-desc">平台 A-E 五档消费规则；档位由本项目产品价位带定义。</td></tr>' +
             '</table>' +
             '<div class="research-section-title">二、打分示例</div>' +
             '<table class="score-table">' +
@@ -3440,7 +3506,7 @@ body {
             '<tr><td>示例三：想放松度假的张叔叔</td><td>1</td><td>2</td><td>9</td><td>1</td><td>7</td><td>休闲+健康养生（D档）</td></tr>' +
             '<tr><td>示例四：注重健康管理的赵奶奶</td><td>1</td><td>1</td><td>2</td><td>9</td><td>5</td><td>医疗+健康养生（C档）</td></tr>' +
             '</table>';
-        $('interestScoreContent').innerHTML = html;
+        $("interestScoreContent").innerHTML = html;
     }
 
     // 风险矩阵参数说明（兴趣打分表页新增板块）
@@ -3448,31 +3514,35 @@ body {
         var html =
             '<div class="research-section-title">三、风险矩阵参数说明（供数据化选择计算使用）</div>' +
             '<p class="research-intro">数据化选择里的客观安全度 G 来自风险矩阵。先看可能性 L，再看后果 C，最后按 R=L×C 定级。</p>' +
+            sourceNoteHtml(dataSourceNotes.riskMatrix + " " + dataSourceNotes.travelSafety) +
             '<div class="param-card">' +
             '<div class="param-card-title">参数一：可能性 L</div>' +
-            '<table><tr><th>L 值</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>' +
-            '<tr><td><strong>概率描述</strong></td><td>几乎不可能</td><td>不太可能</td><td>可能发生</td><td>很可能发生</td><td>几乎必然发生</td></tr>' +
-            '<tr><td><strong>定性说明</strong></td><td>罕见案例</td><td>偶有报道</td><td>常见问题</td><td>频繁发生</td><td>每次行程都可能遇到</td></tr></table>' +
+            '<table><tr><th>L 值</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>来源</th></tr>' +
+            '<tr><td><strong>概率描述</strong></td><td>几乎不可能</td><td>不太可能</td><td>可能发生</td><td>很可能发生</td><td>几乎必然发生</td><td class="score-desc">平台 1-5 级量表</td></tr>' +
+            '<tr><td><strong>定性说明</strong></td><td>罕见案例</td><td>偶有报道</td><td>常见问题</td><td>频繁发生</td><td>每次行程都可能遇到</td><td class="score-desc">ISO 31000 / ISO/IEC 31010 的可能性-后果矩阵思想</td></tr></table>' +
             '</div>' +
             '<div class="param-card">' +
             '<div class="param-card-title">参数二：后果严重度 C</div>' +
-            '<table><tr><th>C 值</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>' +
-            '<tr><td><strong>后果描述</strong></td><td>几乎无影响</td><td>轻微影响</td><td>一般影响</td><td>严重影响</td><td>灾难性影响</td></tr>' +
-            '<tr><td><strong>定性说明</strong></td><td>无需处理</td><td>简单处理即可</td><td>需就医或中止行程</td><td>需住院治疗</td><td>危及生命</td></tr></table>' +
+            '<table><tr><th>C 值</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>来源</th></tr>' +
+            '<tr><td><strong>后果描述</strong></td><td>几乎无影响</td><td>轻微影响</td><td>一般影响</td><td>严重影响</td><td>灾难性影响</td><td class="score-desc">平台 1-5 级量表</td></tr>' +
+            '<tr><td><strong>定性说明</strong></td><td>无需处理</td><td>简单处理即可</td><td>需就医或中止行程</td><td>需住院治疗</td><td>危及生命</td><td class="score-desc">风险分级为本平台颜色分区规则</td></tr></table>' +
             '</div>' +
             '<div class="param-card">' +
             '<div class="param-card-title">参数三：风险等级划分</div>' +
-            '<table><tr><th>等级</th><th>低风险</th><th>中风险</th><th>高风险</th><th>极高风险</th></tr>' +
-            '<tr><td><strong>R 区间</strong></td><td>1 - 4</td><td>5 - 9</td><td>10 - 15</td><td>16 - 25</td></tr>' +
-            '<tr><td><strong>颜色标识</strong></td><td><span class="zone-badge zone-low">绿色</span></td><td><span class="zone-badge zone-mid">黄色</span></td><td><span class="zone-badge zone-high">橙色</span></td><td><span class="zone-badge zone-extreme">红色</span></td></tr>' +
-            '<tr><td><strong>处置原则</strong></td><td>常规管理</td><td>加强防范、制定预案</td><td>重点管控、专项措施</td><td>立即整改、必要时取消行程</td></tr></table>' +
+            '<table><tr><th>等级</th><th>低风险</th><th>中风险</th><th>高风险</th><th>极高风险</th><th>来源</th></tr>' +
+            '<tr><td><strong>R 区间</strong></td><td>1 - 4</td><td>5 - 9</td><td>10 - 15</td><td>16 - 25</td><td class="score-desc">平台 25 格矩阵分区</td></tr>' +
+            '<tr><td><strong>颜色标识</strong></td><td><span class="zone-badge zone-low">绿色</span></td><td><span class="zone-badge zone-mid">黄色</span></td><td><span class="zone-badge zone-high">橙色</span></td><td><span class="zone-badge zone-extreme">红色</span></td><td class="score-desc">平台视觉编码</td></tr>' +
+            '<tr><td><strong>处置原则</strong></td><td>常规管理</td><td>加强防范、制定预案</td><td>重点管控、专项措施</td><td>立即整改、必要时取消行程</td><td class="score-desc">平台安全运营规则</td></tr></table>' +
             '</div>' +
             '<div class="param-card">' +
             '<div class="param-card-title">参数四：客观安全度 G 的评定说明</div>' +
             '<p style="text-align:center;font-size:14px;color:#4d483f">按该模式全部风险的平均值换算，数值越接近 1，代表整体越稳妥。</p>' +
+            '<p class="score-desc" style="text-align:center">G = 1 - R̄/25，属于本平台定义的换算规则。</p>' +
             '</div>' +
-            '<p class="research-intro">这些取值会在“安全旅游分析”中逐项展示，并自动参与最终推荐。</p>';
-        $('riskParamContent').innerHTML = html;
+            '<p class="research-intro">这些取值会在“安全旅游分析”中逐项展示，并自动参与最终推荐。</p>' +
+            sourceNoteHtml(dataSourceNotes.officialLinks) +
+            '<p class="research-intro" style="text-indent:0">' + dataSourceNotes.algorithm + '</p>';
+        $("riskParamContent").innerHTML = html;
     }
 
     /* ==================== 十、安全旅游分析页 ==================== */
@@ -3514,13 +3584,17 @@ body {
         "5-1": "轻微噪声干扰"
     };
 
+    function supplementalRiskMode(l, c) {
+        return (l * 5 + c * 3) % 4;
+    }
+
     function supplementalRiskLabel(l, c) {
         return supplementalRiskMatrixLabels[l + '-' + c] || "补充风险项";
     }
     // 总览：5×5 风险矩阵 + 全量风险表
     function renderSafetyOverview() {
         var html = '<div class="research-section-title">一、5×5 风险矩阵总览图</div>' +
-            '<div class="matrix-help">横轴看发生可能性，纵轴看后果严重度。格子里的风险类别包含系统真实纳入计算的风险点，也补充展示同一风险等级下常见的具体场景，方便判断风险颜色和位置。</div>';
+            '<div class="matrix-help">横轴看发生可能性，纵轴看后果严重度。格子里的风险类别包含系统真实纳入计算的风险点，也补充展示同一风险等级下常见的具体场景，方便判断风险颜色和位置。</div>' + sourceNoteHtml(dataSourceNotes.riskMatrix + " " + dataSourceNotes.travelSafety + " " + dataSourceNotes.officialLinks);
         // 构建矩阵：行=C(5→1)，列=L(1→5)
         var gridHtml = '<div class="risk-matrix-grid">' +
             '<div class="matrix-axis">C＼L</div>';
@@ -3547,7 +3621,7 @@ body {
                 } else {
                     var rEmpty = l2 * c;
                     gridHtml += '<div class="risk-cell ' + riskZoneClass(rEmpty) + ' risk-cell-empty">' +
-                        '<span class="rc-mode">' + supplementalRiskLabel(l2, c) + '</span><span class="rc-value">R=' + rEmpty + '</span></div>';
+                        '<span class="rc-mode">' + ('①②③④'[supplementalRiskMode(l2, c)] + modeNames[supplementalRiskMode(l2, c)] + '：' + supplementalRiskLabel(l2, c)) + '</span><span class="rc-value">R=' + rEmpty + '（L×C）</span></div>';
                 }
             }
         }
@@ -3563,7 +3637,7 @@ body {
         html += gridHtml +
             '<div class="research-section-title">二、16 类风险全量评估表</div>' +
             '<div style="overflow-x:auto"><table class="risk-full-table">' +
-            '<tr><th>风险类别</th><th>涉及模式</th><th>L（可能性）</th><th>C（后果）</th><th>风险值 R</th><th>风险等级</th><th>最高风险表现</th></tr>';
+            '<tr><th>风险类别</th><th>涉及模式</th><th>L（可能性）</th><th>C（后果）</th><th>风险值 R</th><th>风险等级</th><th>最高风险表现</th><th>定量来源</th></tr>';
         var seen = {};
         for (var m2 = 0; m2 < 4; m2++) {
             riskMatrixData[m2].forEach(function (cat) {
@@ -3584,6 +3658,7 @@ body {
                     '<td><strong>' + entry.r + '</strong></td>' +
                     '<td><span class="zone-badge ' + riskZoneClass(entry.r) + '">' + riskLevelOf(entry.r) + '</span></td>' +
                     '<td style="text-align:left">' + entry.cat.items[0] + '</td>' +
+                    '<td class="score-desc" style="text-align:left">' + dataSourceNotes.riskQuantitative + '</td>' +
                     '</tr>';
             });
         });
@@ -3600,7 +3675,7 @@ body {
                 '</div>';
         });
         html += '</div>' +
-            '<p class="research-intro">对比可见：生态+模式（R̄=14.0）与医疗+模式（R̄=11.0）整体风险较高，前者集中于自然环境与方向迷失，后者集中于医疗操作与用药安全；文化+与休闲+模式平均风险值均为9.5，但休闲+模式存在水上活动这一极高风险点，须重点防范。点击上方标签可查看各模式逐类风险详情与防护措施。</p>';
+            '<p class="research-intro">对比可见：生态+模式（R̄=14.0）与医疗+模式（R̄=11.0）整体风险较高，前者集中于自然环境与方向迷失，后者集中于医疗操作与用药安全；文化+与休闲+模式平均风险值均为9.5，但休闲+模式存在水上活动这一极高风险点，须重点防范。点击上方标签可查看各模式逐类风险详情与防护措施。</p>' + sourceNoteHtml(dataSourceNotes.objectiveSafety);
         $('safetyAnalysisContent').innerHTML = html;
     }
 
@@ -3617,7 +3692,7 @@ body {
 
         // 迷你风险矩阵
         html += '<div class="research-section-title">风险矩阵定位图</div>' +
-            '<div class="matrix-help">深色描边的是本模式真实风险位置；其余格子补充展示同一风险等级下常见的具体场景，便于对照风险等级。</div>';
+            '<div class="matrix-help">深色描边的是本模式真实风险位置；其余格子补充展示同一风险等级下常见的具体场景，便于对照风险等级。</div>' + sourceNoteHtml(dataSourceNotes.riskMatrix + " " + dataSourceNotes.officialLinks);
         var gridHtml = '<div class="risk-matrix-grid">' +
             '<div class="matrix-axis">C＼L</div>';
         for (var l = 1; l <= 5; l++) gridHtml += '<div class="matrix-cell-head">L=' + l + '</div>';
@@ -3635,12 +3710,12 @@ body {
                 } else {
                     var rEmpty = l2 * c;
                     gridHtml += '<div class="risk-cell ' + riskZoneClass(rEmpty) + ' risk-cell-empty">' +
-                        '<span class="rc-mode">' + supplementalRiskLabel(l2, c) + '</span><span class="rc-value">R=' + rEmpty + '</span></div>';
+                        '<span class="rc-mode">' + ('①②③④'[supplementalRiskMode(l2, c)] + modeNames[supplementalRiskMode(l2, c)] + '：' + supplementalRiskLabel(l2, c)) + '</span><span class="rc-value">R=' + rEmpty + '（L×C）</span></div>';
                 }
             }
         }
         gridHtml += '</div>';
-        html += gridHtml;
+        html += gridHtml + sourceNoteHtml(dataSourceNotes.riskQuantitative + " 矩阵空白格的场景名称为展示性补充标签，R值仍按该格L×C计算。");
 
         html += '<div class="research-section-title">逐类风险详情与防护措施</div>';
         riskMatrixData[modeIdx].forEach(function (cat) {
@@ -3656,6 +3731,8 @@ body {
                 '<div class="risk-cat-body">' +
                 '<div class="risk-cat-subtitle">风险描述（' + cat.desc + '）</div>' +
                 '<ul>' + cat.items.map(function (it) { return '<li>' + it + '</li>'; }).join('') + '</ul>' +
+                '<div class="risk-cat-subtitle">本项定量来源</div>' +
+                '<p style="font-size:12px;color:#7c7668;margin:4px 0 8px">' + dataSourceNotes.riskQuantitative + '</p>' +
                 '<div class="risk-cat-subtitle">防护措施</div>' +
                 cat.measures.map(function (m) {
                     return '<p style="font-size:13px;color:#4d483f;margin:4px 0"><strong>' + m.title + '：</strong>' + m.content + '</p>';
@@ -3713,17 +3790,29 @@ body {
         });
     }
 
+    function refreshObjectiveProfileLivePanel() {
+        var panel = $("objectiveProfileLivePanel");
+        if (!panel) return;
+        var interests = ["cultureInput", "ecoInput", "leisureInput", "medicalInput"].map(function (id) {
+            var el = $(id);
+            return el ? Math.min(Math.max(parseFloat(el.value) || 0, 0), 10) : 0;
+        });
+        var html = "<strong>画像客观匹配分 P（0-10分）：</strong> ";
+        html += modeFeatures.map(function (mf, i) { return modePersonas[i] + " " + (10 * Math.max(0, cosineSim(interests, mf))).toFixed(2); }).join("；");
+        panel.innerHTML = html;
+    }
+
     function refreshDataSafetyLivePanel() {
         var panel = $('dataSafetyLivePanel');
         if (!panel) return;
         var fears = getUserSafetyEvalScores();
         var html = '';
         fears.forEach(function (f, i) {
-            var g = 1 - f / 10;
+            var a = 10 - Math.min(Math.max(f, 0), 10);
             var fl = fearLevelText(f);
             html += '<strong>' + modeNames[i] + '：</strong>害怕度 ' + f.toFixed(1) + ' / 10' +
                 '（' + fl.text + '）' +
-                '，主观安全度 F = <strong>' + g.toFixed(2) + '</strong><br>';
+                '，安全认知分 A = <strong>' + a.toFixed(2) + ' / 10</strong><br>';
         });
         panel.innerHTML = html;
     }
@@ -3739,13 +3828,13 @@ body {
             });
             html += '<div class="ms-item" style="border-top:3px solid ' + colors[i] + '">' +
                 '<div class="ms-label">' + modeNames[i] + '</div>' +
-                '<div class="ms-value">G=' + rs.G.toFixed(2) + '</div>' +
+                '<div class="ms-value">G=' + rs.G10.toFixed(2) + ' / 10</div>' +
                 '<div class="ms-note">R̄=' + rs.avgR.toFixed(1) + ' · <span class="zone-badge ' + riskZoneClass(Math.round(rs.avgR)) + '">' + rs.level + '</span></div>' +
                 '<div class="ms-note">最高风险：' + topCat.name + '（R=' + (topCat.L * topCat.C) + '）</div>' +
                 '</div>';
         });
         html += '</div>' +
-            '<p style="font-size:13px;color:#7c7668">风险矩阵是系统内置的客观评估表，覆盖四大模式共16类风险。每个风险都按可能性 L 和后果 C 计算，结果会自动汇入后续推荐。</p>';
+            '<p style="font-size:13px;color:#7c7668">风险矩阵是系统内置的客观评估表，覆盖四大模式共16类风险。每个风险都按可能性 L 和后果 C 计算，结果会自动汇入后续推荐。</p>' + sourceNoteHtml(dataSourceNotes.objectiveSafety);
         $('riskMatrixPreview').innerHTML = html;
     }
 
@@ -3762,6 +3851,8 @@ body {
         });
         var consumption = parseFloat($('consumptionInput').value) || 0;
         var fears = getUserSafetyEvalScores();
+        refreshObjectiveProfileLivePanel();
+        refreshDataSafetyLivePanel();
         lastInputs = { interests: interests, fears: fears, consumption: consumption };
 
         var resultBox = $('calcResultDisplay');
@@ -3783,8 +3874,8 @@ body {
                         finished = true;
                         lastEngine = 'javascript';
                         var data = computeRecommendationJS(interests, fears, consumption);
-                        lastResult = data;
-                        displayResult(data, 'javascript');
+                        lastResult = normalizeRecommendationResult(data);
+                        displayResult(lastResult, 'javascript');
                     }
                 }, 0);
                 return;
@@ -3802,8 +3893,8 @@ body {
                     finished = true;
                     clearTimeout(timer);
                     lastEngine = 'python';
-                    lastResult = data;
-                    displayResult(data, 'python');
+                    lastResult = normalizeRecommendationResult(data);
+                    displayResult(lastResult, 'python');
                 }
             }).catch(function () {
                 tryUrl(idx + 1);
@@ -3817,8 +3908,8 @@ body {
                 finished = true;
                 lastEngine = 'javascript';
                 var data = computeRecommendationJS(interests, fears, consumption);
-                lastResult = data;
-                displayResult(data, 'javascript');
+                lastResult = normalizeRecommendationResult(data);
+                displayResult(lastResult, 'javascript');
             }
         }, 2000);
     }
@@ -3834,6 +3925,11 @@ body {
         var b = data.best;
         var second = data.ranking[1];
         var gap = b.score - second.score;
+        var profileScores = [0, 1, 2, 3].map(function (modeIdx) {
+            var profilePart = data.ranking.find(function (part) { return part.mode === modeIdx; });
+            var score = profilePart ? profilePart.P : (data.sims[modeIdx] || 0) * 10;
+            return modePersonas[modeIdx] + " P=" + fmt(score, 1) + "/10";
+        }).join("；");
 
         var engineName = engine === 'python' ? '本地服务完成计算' : '浏览器完成计算';
         $('engineHint').className = 'engine-hint ' + engine;
@@ -3847,34 +3943,32 @@ body {
             '<div class="persona-box">' +
             '<span class="persona-label">您的画像：</span>' +
             '<span class="persona-name">' + p.name + '</span>' +
-            '<span class="persona-sims">（画像匹配：' +
-            p.centerSims.map(function (s, i) {
-                return modePersonas[i] + '中心 ' + fmt(s);
-            }).join('；') + '）</span>' +
+            '<span class="persona-sims">（四画像客观匹配：' + profileScores + '）</span>' +
             '</div>' +
-            '<p style="font-size:13px;color:#7c7668">系统会根据您的兴趣打分，匹配最接近的客群画像，并同步比较四种康养模式。</p>' +
+            '<p style="font-size:13px;color:#7c7668">系统根据四项兴趣输入计算您对四种画像的客观匹配分 P，再与安全认知分 A、风险矩阵安全分 G 合并排序。</p>' +
             '<div class="action-bar" style="margin-top:10px"><button class="btn-primary" id="scenicProfileBtn">查看画像景点推荐</button></div>';
 
-        // 第二步：三要素表
-        html += '<div class="research-section-title">第二步 · 三项评分</div>' +
+        // 第二步：三项表
+        html += '<div class="research-section-title">第二步 · 三项统一评分</div>' +
             '<div class="formula-box">' +
             '<div class="fb-title">综合推荐公式</div>' +
-            '<div class="fb-formula">Score<sub>i</sub> = ⅓·S<sub>i</sub> + ⅓·F<sub>i</sub> + ⅓·G<sub>i</sub></div>' +
-            '' +
+            '<div class="fb-formula">Score<sub>i</sub> = ⅓·P<sub>i</sub> + ⅓·A<sub>i</sub> + ⅓·G<sub>i</sub></div>' +
+            sourceNoteHtml(dataSourceNotes.profileObjective + " " + dataSourceNotes.safetyCognition + " " + dataSourceNotes.objectiveSafety) +
             '</div>' +
             '<div style="overflow-x:auto"><table class="factor-table">' +
-            '<tr><th>模式</th><th>S 兴趣匹配度</th><th>F 主观安全度</th><th>G 客观安全度</th><th>综合得分 Score</th><th>平均风险 R̄</th><th>风险等级</th><th>排名</th></tr>';
+            '<tr><th>模式</th><th>P 画像客观匹配分/10</th><th>A 安全认知分/10</th><th>G 风险矩阵客观安全分/10</th><th>综合得分 Score/10</th><th>平均风险 R̄</th><th>风险等级</th><th>排名</th><th>定量来源</th></tr>';
         data.ranking.forEach(function (part, idx) {
             var bestCls = idx === 0 ? ' class="best-row"' : '';
             html += '<tr' + bestCls + '>' +
                 '<td>' + part.name + '</td>' +
-                '<td>' + fmt(part.S) + '</td>' +
-                '<td>' + fmt(part.F) + '</td>' +
+                '<td>' + fmt(part.P) + '</td>' +
+                '<td>' + fmt(part.A) + '</td>' +
                 '<td>' + fmt(part.G) + '</td>' +
                 '<td><strong>' + fmt(part.score) + '</strong></td>' +
                 '<td>' + fmt(part.avgR, 1) + '</td>' +
                 '<td><span class="zone-badge ' + riskZoneClass(Math.round(part.avgR)) + '">' + part.level + '</span></td>' +
                 '<td>' + ['①', '②', '③', '④'][idx] + '</td>' +
+                '<td class="score-desc" style="text-align:left">' + dataSourceNotes.profileObjective + " " + dataSourceNotes.safetyCognition + " " + dataSourceNotes.objectiveSafety + '</td>' +
                 '</tr>';
         });
         html += '</table></div>';
@@ -3888,19 +3982,19 @@ body {
             '<div class="fr-mode">' + b.name + '</div>' +
             '<div class="fr-tier"><span class="tier-badge">' + data.tier + '档</span>' + data.tier_name + '消费建议（点击"养生方式"页查看该档位具体产品）</div>' +
             '<div class="fr-reasons"><h4 style="font-family:var(--font-serif);color:#1e3a29;margin:10px 0 6px">推荐理由（充分论证）：</h4><ul>' +
-            '<li><strong>兴趣匹配（S=' + fmt(b.S) + '）：</strong>' +
+            '<li><strong>画像客观匹配（P=' + fmt(b.P) + ' / 10）：</strong>' +
             (b.mode === p.cluster ?
                 '您的兴趣打分与"' + p.name + '"画像接近，和' + b.name + '的适配度在四种模式中' + (b.S === data.sims[0] && b.S >= data.sims[1] ? '最高' : '居前') + '，' + modeDetail[b.mode].who + '群体较适合该模式。' :
                 '您的兴趣打分与' + b.name + '较为接近，是当前更适合尝试的模式。') + '</li>' +
-            '<li><strong>主观安全（F=' + fmt(b.F) + '）：</strong>您对该模式的害怕度自评为 ' + fmt((1 - b.F) * 10, 1) + ' 分（满分10），主观接受度高，出行心理负担小。</li>' +
-            '<li><strong>客观安全（G=' + fmt(b.G) + '，R̄=' + fmt(b.avgR, 1) + '）：</strong>风险矩阵量化显示该模式整体风险等级为' + b.level + '，四类风险中最高为' + bRiskTop.name + '（R=' + (bRiskTop.L * bRiskTop.C) + '），按防护措施执行即可有效控制。</li>' +
+            '<li><strong>安全认知（A=' + fmt(b.A) + ' / 10）：</strong>您对该模式的害怕度自评为 ' + fmt(10 - b.A, 1) + ' 分（满分10），对应安全认知分为 ' + fmt(b.A, 1) + ' 分。</li>' +
+            '<li><strong>风险矩阵安全（G=' + fmt(b.G) + ' / 10，R̄=' + fmt(b.avgR, 1) + '）：</strong>风险矩阵量化显示该模式整体风险等级为' + b.level + '，四类风险中最高为' + bRiskTop.name + '（R=' + (bRiskTop.L * bRiskTop.C) + '），按防护措施执行即可有效控制。</li>' +
             '<li><strong>综合得分 ' + fmt(b.score) + '，领先第二名' + second.name + '（' + fmt(second.score) + '）' + fmt(gap) + ' 分：</strong>虽然' + second.name + '的' +
-            (second.S > b.S ? '兴趣匹配度更高，但其客观风险（R̄=' + fmt(second.avgR, 1) + '，最高风险点' + secondRiskTop.name + '）和/或主观安全度' :
-                second.F > b.F ? '主观安全度更高，但兴趣匹配度与客观安全性不及推荐模式' :
-                    '客观安全度更高，但兴趣匹配度与主观接受度不及推荐模式') +
-            '不及推荐模式，三项等权合成后仍以推荐模式为最优。</li>' +
+            (second.P > b.P ? '画像匹配分更高，但其风险矩阵安全分（R̄=' + fmt(second.avgR, 1) + '，最高风险点' + secondRiskTop.name + '）和/或安全认知分' :
+                second.A > b.A ? '安全认知分更高，但画像匹配分与风险矩阵安全分不及推荐模式' :
+                    '风险矩阵安全分更高，但画像匹配分与安全认知分不及推荐模式') +
+            '不及推荐模式，画像匹配、安全认知和风险矩阵三项等权合成后仍以推荐模式为最优。</li>' +
             '<li><strong>消费匹配：</strong>您消费预测 ' + fmt(lastInputs.consumption, 1) + ' 分对应' + data.tier + '档' + data.tier_name + '，' + modeDetail[b.mode].priceTiers['ABCDE'.indexOf(data.tier)].detail + '</li>' +
-            '</ul></div>' +
+            '</ul></div>' + sourceNoteHtml(dataSourceNotes.profileObjective + " " + dataSourceNotes.safetyCognition + " " + dataSourceNotes.objectiveSafety + " 消费档位依据平台A-E五档消费规则。") +
             '<div class="action-bar" style="margin-top:14px">' +
             '<button class="btn-primary" id="consultRecommendBtn">向客服咨询此推荐</button>' +
             '<button class="btn-secondary" id="speakRecommendBtn">朗读推荐结果</button>' +
@@ -3925,8 +4019,8 @@ body {
         });
         var speakBtn = $('speakRecommendBtn');
         if (speakBtn) speakBtn.addEventListener('click', function () {
-            var text = '您的最终推荐模式是' + b.name + '。综合得分' + b.score.toFixed(3) + '。' +
-                '兴趣匹配度' + b.S.toFixed(3) + '，主观安全度' + b.F.toFixed(3) + '，客观安全度' + b.G.toFixed(3) + '。' +
+            var text = '您的最终推荐模式是' + b.name + '。综合得分' + b.score.toFixed(3) + ' / 10。' +
+                '画像客观匹配分' + b.P.toFixed(2) + '，安全认知分' + b.A.toFixed(2) + '，风险矩阵安全分' + b.G.toFixed(2) + '。' +
                 '消费建议' + data.tier + '档' + data.tier_name + '。';
             speakText(text);
         });
@@ -4270,27 +4364,28 @@ body {
         if (!lastResult) { alert('请先在"数据化选择"页面完成综合计算'); return; }
         var XLSXLib = window.XLSX;
         if (!XLSXLib) { alert('Excel 组件未加载成功，请检查网络后刷新页面'); return; }
-        var rows = [['安途智算虚拟仿真系统 推荐报告', '', '', '', '', '', '']];
+        var rows = [['安途智算虚拟仿真系统 推荐报告', '', '', '', '', '', '', '']];
         rows.push(['计算引擎', lastEngine === 'python' ? 'Python（analysis.py）' : 'JavaScript', '', '', '', '', '']);
         rows.push(['用户画像', lastResult.persona.name, '', '', '', '', '']);
         rows.push(['兴趣输入', dimNames.join('/') + '：' + lastInputs.interests.join('、'), '', '', '', '', '']);
         rows.push(['害怕度自评', lastInputs.fears.join('、'), '', '', '', '', '']);
+        rows.push(['三项评分公式', 'P=10×余弦相似度；A=10-害怕度；G=10×(1-平均风险/25)；Score=(P+A+G)/3', '', '', '', '', '']);
         rows.push([]);
-        rows.push(['模式', 'S 兴趣匹配度', 'F 主观安全度', 'G 客观安全度', '综合得分', '平均风险R̄', '风险等级']);
+        rows.push(['模式', 'P 画像客观匹配分/10', 'A 安全认知分/10', 'G 风险矩阵客观安全分/10', '综合得分/10', '平均风险R̄', '风险等级', '定量来源']);
         lastResult.ranking.forEach(function (p) {
-            rows.push([p.name, +p.S.toFixed(4), +p.F.toFixed(4), +p.G.toFixed(4), +p.score.toFixed(4), +p.avgR.toFixed(2), p.level]);
+            rows.push([p.name, +p.P.toFixed(4), +p.A.toFixed(4), +p.G.toFixed(4), +p.score.toFixed(4), +p.avgR.toFixed(2), p.level, dataSourceNotes.profileObjective + " " + dataSourceNotes.safetyCognition + " " + dataSourceNotes.objectiveSafety]);
         });
         rows.push([]);
         rows.push(['最终推荐', lastResult.best.name, '消费建议', lastResult.tier + '档 ' + lastResult.tier_name, '', '', '']);
         rows.push([]);
-        rows.push(['风险类别', '模式', 'L', 'C', 'R', '等级', '防护要点']);
+        rows.push(['风险类别', '模式', 'L', 'C', 'R', '等级', '防护要点', '定量来源']);
         riskMatrixData.forEach(function (cats, mi) {
             cats.forEach(function (cat) {
-                rows.push([cat.name, modeNames[mi], cat.L, cat.C, cat.L * cat.C, riskLevelOf(cat.L * cat.C), cat.measures[0].title]);
+                rows.push([cat.name, modeNames[mi], cat.L, cat.C, cat.L * cat.C, riskLevelOf(cat.L * cat.C), cat.measures[0].title, dataSourceNotes.riskQuantitativePlain]);
             });
         });
         var ws = XLSXLib.utils.aoa_to_sheet(rows);
-        ws['!cols'] = [{ wch: 16 }, { wch: 22 }, { wch: 12 }, { wch: 12 }, { wch: 12 }, { wch: 12 }, { wch: 12 }, { wch: 40 }];
+        ws['!cols'] = [{ wch: 16 }, { wch: 22 }, { wch: 12 }, { wch: 12 }, { wch: 12 }, { wch: 12 }, { wch: 12 }, { wch: 60 }];
         var wb = XLSXLib.utils.book_new();
         XLSXLib.utils.book_append_sheet(wb, ws, '数据化选择报告');
         XLSXLib.writeFile(wb, '康养旅游数据化选择报告.xlsx');
@@ -4340,82 +4435,15 @@ body {
         var currentResult = '暂无计算结果，用户尚未完成数据化选择。';
         if (lastResult) {
             var b = lastResult.best;
-            currentResult = '当前计算结果（' + (lastEngine === 'python' ? 'Python引擎' : 'JavaScript引擎') + '）：' +
-                '用户画像为' + lastResult.persona.name + '。' +
-                '四模式综合得分：' + lastResult.ranking.map(function (p) { return p.name + p.score.toFixed(3); }).join('、') + '。' +
-                '最终推荐：' + b.name + '（S=' + b.S.toFixed(3) + '，F=' + b.F.toFixed(3) + '，G=' + b.G.toFixed(3) + '，Score=' + b.score.toFixed(3) + '）。' +
-                '消费建议：' + lastResult.tier + '档' + lastResult.tier_name + '。';
+            currentResult = '当前计算结果：用户画像为' + lastResult.persona.name + '；最终推荐为' + b.name + '（P=' + b.P.toFixed(2) + '，A=' + b.A.toFixed(2) + '，G=' + b.G.toFixed(2) + '，Score=' + b.score.toFixed(2) + ' / 10）；消费建议：' + lastResult.tier + '档' + lastResult.tier_name + '。';
         }
-        return '你是"小旅"，安途智算虚拟仿真系统的在线客服助手，服务对象以中老年游客为主。' +
-            '请用简洁、亲切、有礼貌的中文回复，避免使用网络流行语，语气温和耐心。' +
-            '\n\n【平台功能】' +
-            '\n- 左侧导航：系统首页、背景与模式、养生方式、兴趣打分表、旅游组群、安全旅游分析、数据化选择、可视化分析、反馈与建议' +
-            '\n- 数据化选择：用户输入文化/生态/休闲/医疗兴趣值与消费预测（0-10分），并自评对四种模式的主观害怕度；系统调用Python算法（K均值聚类用户画像、余弦相似度匹配、风险矩阵客观安全度），按 Score=⅓S+⅓F+⅓G 三要素等权公式输出最终推荐及充分理由' +
-            '\n- 安全旅游分析：以风险矩阵（R=L×C，L可能性1-5，C后果1-5）量化四大模式共16类风险，等级划分：R≤4低、5-9中、10-15高、16-25极高，并给出每类风险的防护措施' +
-            '\n- 可视化分析：三曲线差值图（用户兴趣/模式特征/差值）、雷达图（多维对比）、饼状分布图（得分占比与风险等级分布），图表可导出为Word文档' +
-            '\n- 养生方式：四种模式（文化+、生态+、休闲+、医疗+）的图片、适合人群、消费档次ABCDE五档（经济型至奢华型）' +
-            '\n- 支持导出Excel报告、朗读推荐结果（语音合成）' +
-            '\n\n【四种康养模式】' +
-            '\n1. 文化+健康养生：适合文化探寻者，参观历史文化名城、博物馆、非遗体验、禅修静养等' +
-            '\n2. 生态+健康养生：适合自然热衷者，森林浴、湿地漫步、海滨冥想、温泉疗养等' +
-            '\n3. 休闲+健康养生：适合都市逃离者，海滨度假村、温泉酒店、美食之旅、SPA护理等' +
-            '\n4. 医疗+健康养生：适合活力养护者，健康体检、中医理疗、康复训练、营养膳食等' +
-            '\n\n【当前状态】' + currentResult +
-            '\n\n【注意事项】' +
-            '\n- 用户问朗读/语音时，告知点击推荐结果中的"朗读推荐结果"按钮或聊天框下方"朗读"按钮' +
-            '\n- 用户问安全问题，引导查看"安全旅游分析"页面（风险矩阵量化）' +
-            '\n- 回复控制在200字以内，简洁明了，不要编造不存在的功能或数据';
+        return '你是“安途智算虚拟仿真系统”的在线客服助手小旅，服务对象以中老年游客为主。请使用简洁、亲切、有礼貌的中文回复，语气温和耐心。\n\n' +
+            '【平台功能】\n左侧导航包含系统首页、背景与模式、养生方式、兴趣打分表、旅游组群、安全旅游分析、数据化选择、可视化分析和反馈与建议。\n' +
+            '数据化选择会根据文化、生态、休闲、医疗兴趣值、安全认知和风险矩阵，计算P、A、G三项评分，并按Score=(P+A+G)/3输出推荐。\n' +
+            '安全旅游分析使用R=L×C风险矩阵，L和C均为1至5分，R≤4为低风险、5至9为中风险、10至15为高风险、16至25为极高风险。\n' +
+            '【当前状态】\n' + currentResult + '\n\n' +
+            '用户咨询安全问题时，请引导查看安全旅游分析页面；用户咨询朗读时，请提示使用推荐结果或聊天框中的朗读按钮。';
     }
-
-    function appendChatMsg(role, text) {
-        var body = $('aiChatBody');
-        var div = document.createElement('div');
-        div.className = 'chat-msg ' + role;
-        div.textContent = text;
-        body.appendChild(div);
-        body.scrollTop = body.scrollHeight;
-        return div;
-    }
-
-    function updateApiConfigStatus(message) {
-        var status = $('aiApiStatus');
-        if (!status) return;
-        var configured = !!deepseekApiKey;
-        status.textContent = message || (configured ? '已配置' : '未配置');
-        status.classList.toggle('ready', configured);
-    }
-
-    function saveDeepSeekApiKey() {
-        var input = $('aiApiKeyInput');
-        var apiKey = input ? input.value.trim() : '';
-        if (!apiKey) {
-            updateApiConfigStatus('请输入 API Key');
-            if (input) input.focus();
-            return;
-        }
-        try {
-            window.localStorage.setItem('deepseekApiKey', apiKey);
-            deepseekApiKey = apiKey;
-            input.value = '';
-            updateApiConfigStatus('已保存');
-            appendChatMsg('assistant', 'API Key 已保存在当前浏览器中，现在可以使用在线客服。');
-        } catch (e) {
-            updateApiConfigStatus('保存失败');
-            appendChatMsg('assistant', '当前浏览器无法保存 API Key，请检查浏览器隐私或存储设置。');
-        }
-    }
-
-    function clearDeepSeekApiKey() {
-        try {
-            window.localStorage.removeItem('deepseekApiKey');
-        } catch (e) { /* 浏览器禁用本地存储时仍清除当前会话变量 */ }
-        deepseekApiKey = '';
-        chatHistory = [];
-        if ($('aiApiKeyInput')) $('aiApiKeyInput').value = '';
-        updateApiConfigStatus();
-        appendChatMsg('assistant', 'API Key 已清除，在线客服接口已停止使用。');
-    }
-
     function callDeepSeekAPI(userMsg, callback) {
         if (!deepseekApiKey) {
             callback('请先在客服面板顶部填写并保存您自己的 DeepSeek API Key，再发送问题。');
@@ -4499,12 +4527,33 @@ body {
 
     /* ==================== 十五、事件绑定与初始化 ==================== */
 
+    function getDemoUser() { try { return JSON.parse(localStorage.getItem('demoUser') || 'null'); } catch (e) { return null; } }
+    function saveDemoUser(user) { localStorage.setItem('demoUser', JSON.stringify(user)); }
+    function initAuthAndProfile() {
+        var user = getDemoUser();
+        var avatar = $('profileAvatar');
+        if (avatar) avatar.src = (user && user.avatar) || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"%3E%3Crect width="150" height="150" fill="%23e5dfd0"/%3E%3Ccircle cx="75" cy="55" r="25" fill="%238c9a83"/%3E%3Cpath d="M30 135c5-32 85-32 90 0" fill="%238c9a83"/%3E%3C/svg%3E';
+        if (user) { ['Name','Phone','Email'].forEach(function(k){ if ($('profile'+k)) $('profile'+k).value=user[k.toLowerCase()]||''; }); if ($('profileAccount')) $('profileAccount').value=user.account||user.email||''; }
+        $('showRegister').onclick=function(){ $('loginForm').style.display='none'; $('registerForm').style.display='grid'; $('authTitle').textContent='创建演示账号'; };
+        $('showLogin').onclick=function(){ $('registerForm').style.display='none'; $('loginForm').style.display='grid'; $('authTitle').textContent='登录安途智算'; };
+        $('consultFromAuth').onclick=function(){ $('aiChatPanel').classList.add('open'); };
+        $('registerBtn').onclick=function(){ var name=$('registerName').value.trim(), phone=$('registerPhone').value.trim(), email=$('registerEmail').value.trim(), pw=$('registerPassword').value; if(!name||!email||!pw){alert('请填写姓名、邮箱和密码');return;} if(pw!==$('registerConfirm').value){alert('两次密码不一致');return;} saveDemoUser({name:name,phone:phone,email:email,password:pw,account:email}); alert('注册成功，请登录'); $('showLogin').click(); };
+        $('loginBtn').onclick=function(){ var u=getDemoUser(), account=$('loginAccount').value.trim(), pw=$('loginPassword').value; if(!u){alert('暂无演示账号，请先注册');return;} if((account===u.email||account===u.account)&&pw===u.password){sessionStorage.setItem('demoLoggedIn','1'); alert('登录成功'); showPage('homePage');} else alert('账号或密码不正确'); };
+        $('saveProfileBtn').onclick=function(){ var u=getDemoUser()||{}; u.name=$('profileName').value.trim(); u.phone=$('profilePhone').value.trim(); u.email=$('profileEmail').value.trim(); u.account=u.email||u.account; saveDemoUser(u); alert('资料已保存（仅当前浏览器）'); };
+        $('profileAvatarInput').onchange=function(e){ var file=e.target.files[0]; if(!file)return; var reader=new FileReader(); reader.onload=function(){ $('profileAvatar').src=reader.result; var u=getDemoUser()||{}; u.avatar=reader.result; saveDemoUser(u); }; reader.readAsDataURL(file); };
+        $('changePasswordBtn').onclick=function(){ var u=getDemoUser(); if(!u){alert('请先注册账号');return;} if($('oldPassword').value!==u.password){alert('原密码不正确');return;} if(!$('newPassword').value||$('newPassword').value!==$('confirmPassword').value){alert('请确认新密码一致且不为空');return;} u.password=$('newPassword').value; saveDemoUser(u); alert('密码已修改'); };
+        $('logoutBtn').onclick=function(){ sessionStorage.removeItem('demoLoggedIn'); showPage('authPage'); };
+    }
     function bindEvents() {
+        initAuthAndProfile();
         // 导航
         document.querySelectorAll('.nav-item[data-page]').forEach(function (item) {
             item.addEventListener('click', function () {
                 showPage(item.getAttribute('data-page'));
-                if (item.getAttribute('data-page') === 'dataSelectPage' && !lastResult) refreshDataSafetyLivePanel();
+                if (item.getAttribute('data-page') === 'dataSelectPage' && !lastResult) {
+                    refreshObjectiveProfileLivePanel();
+                    refreshDataSafetyLivePanel();
+                }
             });
         });
         $('sidebarToggle').addEventListener('click', function () {
@@ -4523,7 +4572,7 @@ body {
             if (el) el.addEventListener('click', function () { showPage(cardMap[id]); });
         });
         $('homeCardDigitalSandbox').addEventListener('click', function () {
-            window.location.href = './sc-datav/sc-datav/dist/';
+            window.location.href = './sc-datav/sc-datav/dist/index.html';
         });
 
         // 轮播
@@ -4567,6 +4616,10 @@ body {
 
         // 数据化选择
         $('quickCalcBtn').addEventListener('click', runCalc);
+        ['cultureInput', 'ecoInput', 'leisureInput', 'medicalInput'].forEach(function (id) {
+            var input = $(id);
+            if (input) input.addEventListener('input', refreshObjectiveProfileLivePanel);
+        });
         $('resetSafetyEvalInputBtn').addEventListener('click', resetSafetyEvalInputs);
         $('exportExcelFromCalcBtn').addEventListener('click', exportSimsToExcel);
         $('gotoVisualBtn').addEventListener('click', function () {
@@ -4689,6 +4742,7 @@ body {
         renderSafetyAnalysis('safety-overview');
         refreshDataSafetyLivePanel();
         bindEvents();
+        if (sessionStorage.getItem('demoLoggedIn') === '1') showPage('homePage'); else showPage('authPage');
         updateApiConfigStatus();
         if ('speechSynthesis' in window) {
             window.speechSynthesis.onvoiceschanged = loadVoices;
